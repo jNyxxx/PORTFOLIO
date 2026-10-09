@@ -39,16 +39,15 @@ test("typed content is identical to the published baseline", () => {
   assert.deepEqual(projects, baseline.projects);
   assert.deepEqual(technologies, baseline.stack);
 });
-test("unchanged case-study, projects, approach, about and footer content retain original DOM", async () => {
+test("unchanged project, approach, about and footer content retain original DOM", async () => {
   const legacy = legacyDOM(),
     dom = makeDOM();
   installDOM(dom);
   const root = createRoot(dom.window.document.getElementById("root")!);
   try {
     await act(async () => root.render(<Portfolio />));
-    // Deliberately redesigned hero, stack controls, skills icons and contact are tested separately.
+    // Deliberately redesigned hero, featured cards, stack, skills and contact are tested separately.
     for (const selector of [
-      "#featured",
       "#work",
       "#approach",
       "#about",

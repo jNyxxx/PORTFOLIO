@@ -1,11 +1,14 @@
+"use client";
+
 import type {
   ButtonHTMLAttributes,
   AnchorHTMLAttributes,
   ReactNode,
 } from "react";
+import { Button, buttonVariants } from "./button";
 import { Icon, type IconName } from "./icon";
 
-/** Variant and size contracts inspired by shadcn Button and Untitled UI Button. */
+/** Real shadcn Base UI buttonVariants applied to an anchor (preserves link role). */
 export function ActionLink({
   variant = "primary",
   icon = "arrow-up-right",
@@ -17,10 +20,14 @@ export function ActionLink({
   icon?: IconName;
   children: ReactNode;
 }) {
+  const baseVariant = variant === "primary" ? "default" : "outline";
   return (
     <a
       {...props}
-      className={`ui-action ui-action--${variant} ${className}`.trim()}
+      className={buttonVariants({
+        variant: baseVariant,
+        className: `ui-action ui-action--${variant} ${className}`.trim(),
+      })}
     >
       <span>{children}</span>
       <Icon name={icon} size={16} />
@@ -28,7 +35,7 @@ export function ActionLink({
   );
 }
 
-/** Keyboard-native icon button; never a clickable decorative SVG. */
+/** shadcn Base UI button, icon-only variant, keyboard and focus native. */
 export function IconButton({
   label,
   icon,
@@ -41,19 +48,21 @@ export function IconButton({
   children?: ReactNode;
 }) {
   return (
-    <button
+    <Button
       {...props}
       type={props.type ?? "button"}
+      variant="outline"
+      size="icon"
       aria-label={label}
       className={`ui-icon-button ${className}`.trim()}
     >
       <Icon name={icon} size={18} />
       {children}
-    </button>
+    </Button>
   );
 }
 
-/** Exclusive filter control follows Mantine SegmentedControl and MUI ToggleButton patterns. */
+/** Real Base UI button with Mantine-like segmented single-selection behavior. */
 export function FilterOption({
   label,
   count,
@@ -65,19 +74,19 @@ export function FilterOption({
   selected: boolean;
 }) {
   return (
-    <button
+    <Button
       {...props}
       type="button"
+      variant={selected ? "secondary" : "ghost"}
       className={`ui-filter-option ${selected ? "active" : ""}`}
       aria-pressed={selected}
     >
       <span>{label}</span>
       <span className="ui-filter-count">{count}</span>
-    </button>
+    </Button>
   );
 }
 
-/** Shared, consistently spaced social cards using platform-specific SVG marks. */
 export function SocialTile({
   index,
   name,
@@ -97,7 +106,7 @@ export function SocialTile({
     <>
       <span className="social-index">{index}</span>
       <span className="ui-social-icon">
-        <Icon name={icon} size={21} />
+        <Icon name={icon} size={22} />
       </span>
       <span className="ui-social-text">
         {name}
@@ -113,18 +122,21 @@ export function SocialTile({
   return href ? (
     <a
       href={href}
+      className="ui-social-tile"
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
     >
       {content}
     </a>
   ) : (
-    <button
+    <Button
+      variant="ghost"
       type="button"
+      className="ui-social-tile"
       onClick={onClick}
       aria-label={`Copy ${name.toLowerCase()} address`}
     >
       {content}
-    </button>
+    </Button>
   );
 }

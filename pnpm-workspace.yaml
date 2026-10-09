@@ -1,3 +1,6 @@
 allowBuilds:
   esbuild: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@base-ui/react@1.9.0'
+  - '@base-ui/utils@0.5.0'

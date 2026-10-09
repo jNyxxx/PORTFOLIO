@@ -5,16 +5,23 @@ $root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $repoUrl = "https://github.com/jNyxxx/PORTFOLIO.git"
 $paths = @(
   "DESIGN_SYSTEM.md",
+  "package.json",
+  "pnpm-lock.yaml",
+  "pnpm-workspace.yaml",
   "public/styles/system.css",
   "src/components/contact.tsx",
+  "src/components/featured.tsx",
+  "src/components/featured-media-card.tsx",
   "src/components/header.tsx",
   "src/components/hero.tsx",
   "src/components/skills.tsx",
   "src/components/toolbox.tsx",
+  "src/components/ui/button.tsx",
+  "src/components/ui/card.tsx",
   "src/components/ui/controls.tsx",
-  "src/components/ui/icon.tsx",
   "src/hooks/use-browser.ts",
   "src/hooks/use-orbit.ts",
+  "src/components/ui/icon.tsx",
   "src/lib/motion.ts",
   "tests/interactions.test.tsx",
   "tests/motion.test.ts",
@@ -70,7 +77,7 @@ try {
   if ($LASTEXITCODE -eq 1) {
     git --no-pager diff --cached --shortstat
     Assert-Exit "Summarize changes"
-    git commit -m "Elevate NYX components, prevent carousel overlap, and refine contact interactions"
+    git commit -m "Use shadcn Base UI components, restore orbit and refine showcase gallery"
     Assert-Exit "Commit NYX UI revision"
   } elseif ($LASTEXITCODE -ne 0) {
     throw "Cannot inspect staged revision."

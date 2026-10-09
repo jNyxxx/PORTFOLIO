@@ -14,23 +14,27 @@
     "format": "prettier --write src scripts tests/*.ts tests/*.tsx *.json *.ts *.mjs"
   },
   "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "class-variance-authority": "^0.7.1",
+    "lucide-react": "^0.468.0",
     "next": "16.4.0",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "simple-icons": "^15.22.0"
   },
   "devDependencies": {
-    "typescript": "~5.9.3",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/jsdom": "^27.0.0",
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "tailwindcss": "4.3.3",
-    "@tailwindcss/postcss": "4.3.3",
-    "postcss": "^8.5.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "16.4.0",
-    "tsx": "^4.20.0",
     "jsdom": "^27.0.0",
-    "@types/jsdom": "^27.0.0",
-    "prettier": "3.6.2"
+    "postcss": "^8.5.0",
+    "prettier": "3.6.2",
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3"
   }
 }

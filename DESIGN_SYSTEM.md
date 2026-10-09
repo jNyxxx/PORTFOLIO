@@ -1,6 +1,6 @@
-# NYX Portfolio — Design System 02
+# NYX Portfolio — Design System 03
 
-This portfolio uses **one custom visual language** instead of combining five incompatible component frameworks. Shared, working React components now live in `src/components/ui/controls.tsx` and `src/components/ui/icon.tsx`, with their visual contracts in `public/styles/system.css`. The stylesheet loads last by `src/app/layout.tsx`. The original four stylesheets and project media remain intact.
+This portfolio uses **one custom visual language** instead of combining five incompatible component frameworks. Actual MIT-licensed shadcn component implementations now live in `src/components/ui/button.tsx` and `src/components/ui/card.tsx`, alongside our compositions in `src/components/ui/controls.tsx` and sourced icon components in `src/components/ui/icon.tsx`. All share the NYX theme in `public/styles/system.css`. The stylesheet loads last by `src/app/layout.tsx`. The original four stylesheets and project media remain intact.
 
 ## Direction
 
@@ -47,16 +47,19 @@ Defined in `:root` inside `public/styles/system.css`.
 
 | JSX component | Location | Used on screen | Pattern adapted from |
 | --- | --- | --- | --- |
-| `ActionLink` | `src/components/ui/controls.tsx` | Hero "See my work" and "Let's talk" | shadcn/ui Button variants and Untitled UI button layout |
+| `Button` + `buttonVariants` | `src/components/ui/button.tsx` | All carousel controls, stack filters, contact copy, and hero link styling | [shadcn Base UI Button](https://ui.shadcn.com/docs/components/base/button), using real `@base-ui/react/button` and `class-variance-authority` |
+| `Card`, `CardContent`, `CardFooter` | `src/components/ui/card.tsx` | Both DataAutomated media previews | [shadcn Card](https://ui.shadcn.com/docs/components/base/card) source composition |
+| `FeaturedMediaCard` | `src/components/featured-media-card.tsx` | Featured project images with 16:9 aspect, rich captions, and fullscreen preview | Real shadcn Card plus custom editorial layout |
+| `ActionLink` | `src/components/ui/controls.tsx` | Hero "See my work" and "Let's talk" | Real shadcn `buttonVariants` on semantic anchors |
 | `IconButton` | Same | Carousel previous/next and pause controls | shadcn/ui icon buttons and Mantine action icons |
 | `FilterOption` | Same | Six Toolbox technology filters | Mantine SegmentedControl and MUI single-select toggle group |
 | `SocialTile` | Same | Facebook, Instagram, Email, GitHub cards | Untitled UI social buttons, custom outbound/link behavior |
-| `Icon` | `src/components/ui/icon.tsx` | Brand icons, menu, selected skills, carousel and clipboard | Lightweight local SVG paths in the Lucide stroke convention |
+| `Icon` | `src/components/ui/icon.tsx` | Brand icons, menu, selected skills, carousel and clipboard | Actual `lucide-react` icons and official `simple-icons` brand paths (including GitHub) |
 | `ui-copy-address` | `src/components/contact.tsx` | Click directly on the email address, see copied confirmation | shadcn/ui button feedback patterns |
 
-**Carousel geometry:** `src/lib/motion.ts` returns transform, opacity and depth; `src/hooks/use-orbit.ts` updates positions, visible state and keyboard focus. The front card stays readable without the side cards covering it. On mobile, side cards are hidden in favor of one focused preview plus accessible arrows.
+**Carousel geometry:** The original 32-second, continuous 360° sin/cos/rotateY orbit is preserved in `src/lib/motion.ts`. The same hook updates transforms, opacity, and focus in `src/hooks/use-orbit.ts`. A full-circle geometric collision regression test checks all 360 degrees at four widths. The front card stays readable without the side cards covering it. On mobile, side cards are hidden in favor of one focused preview plus accessible arrows.
 
-These are **actual reusable project components**, adapted to NYX rather than pasted default-library themes. Previously the update only changed CSS, and there were no reusable component implementations. This version addresses that limitation. No `@mui/material`, `@mantine/core`, Untitled UI package or shadcn CLI-generated package has been installed.
+These are **actual shadcn Base UI Button / Card source implementations and imported open-source primitives**, not merely inspired CSS. The shadcn components are owned by this repository, as intended by the shadcn model, with an original NYX visual theme. Installed dependencies: `@base-ui/react`, `class-variance-authority`, `lucide-react`, and `simple-icons`. We did not install five competing framework themes. Mantine, MUI, Uiverse and Untitled UI remain pattern references only.
 
 ## Inspiration and licensing boundaries
 
@@ -68,7 +71,7 @@ We referenced patterns, not copied whole site designs:
 - [Uiverse](https://uiverse.io/): restrained hover/micro-interaction details.
 - [Material UI](https://mui.com/): centralized theming discipline and consistent component states.
 
-These implementations use React native buttons/links and inline local SVG vectors. Design ideas were adapted and restyled, not copied wholesale. If new patterns are added, prefer the existing component contracts and do not paste default Mantine, MUI, shadcn or Untitled UI themes into this portfolio. Preserve reduced-motion and accessible focus states.
+Base UI powers actual buttons, while semantic links use shadcn's `buttonVariants`; Card composition follows the shadcn MIT registry. Vector paths come directly from Lucide and Simple Icons. If new patterns are added, prefer the existing component contracts and do not paste default Mantine, MUI, shadcn or Untitled UI themes into this portfolio. Preserve reduced-motion and accessible focus states.
 
 ## Implementing new components
 

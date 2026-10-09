@@ -58,7 +58,7 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
           card.style.filter = p.filter;
           card.style.opacity = p.opacity;
           card.dataset.facing = i === next ? "true" : "false";
-          card.style.pointerEvents = p.depth < -0.55 ? "none" : "auto";
+          card.style.pointerEvents = p.depth < -0.10 ? "none" : "auto";
           card.tabIndex = i === next ? 0 : -1;
         }
       });

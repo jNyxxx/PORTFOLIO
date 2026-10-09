@@ -31,6 +31,44 @@ test("all project dialogs, gallery navigation, image previews, filters, motion c
   };
   try {
     await act(async () => root.render(<Portfolio />));
+    // shadcn Base UI primitive is mounted, not just a locally-styled HTML button.
+    for (const selector of [
+      "#carousel-prev",
+      "#carousel-next",
+      ".ui-copy-address",
+      '[data-filter="all"]',
+    ]) {
+      assert.equal(
+        d.querySelector(selector)?.getAttribute("data-slot"),
+        "button",
+        selector,
+      );
+    }
+    const githubIcon = d.querySelector(
+      ".social-links a[href='https://github.com/jNyxxx'] .ui-social-icon svg path",
+    );
+    assert(
+      githubIcon?.getAttribute("d")?.length &&
+        githubIcon.getAttribute("d")!.length > 200,
+      "Github must render the actual Simple Icons brand path",
+    );
+    const mediaCards = d.querySelectorAll(
+      "#featured [data-slot='card'].featured-media-card",
+    );
+    assert.equal(
+      mediaCards.length,
+      2,
+      "Featured gallery uses real shadcn Card composition",
+    );
+    assert.equal(
+      d.querySelectorAll(
+        "#featured .featured-media-card [data-slot='card-footer']",
+      ).length,
+      2,
+    );
+    await click('#featured .featured-media-card [data-photo-preview="4"]');
+    assert((d.getElementById("photo-preview") as HTMLDialogElement).open);
+    await click("#preview-close");
     for (const key of Object.keys(projects) as ProjectId[]) {
       const selector =
         key === "data"

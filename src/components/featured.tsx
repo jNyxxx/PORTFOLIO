@@ -1,5 +1,6 @@
 "use client";
 import { usePortfolio } from "./portfolio-provider";
+import { FeaturedMediaCard } from "./featured-media-card";
 export function Featured() {
   const { openCase, openPhoto } = usePortfolio();
   return (
@@ -60,49 +61,23 @@ export function Featured() {
           <span>{"THE FIRST IMPRESSION"}</span>
           <span>{"Landing page · 1920 × 1080"}</span>
         </div>
-        <div className={"featured-duo"}>
-          <a
-            href={"/assets/dataautomated/dashboard.png"}
-            data-photo-preview={"4"}
-            onClick={(event) => {
-              event.preventDefault();
-              openPhoto("data", 4);
-            }}
-          >
-            <img
-              src={"/assets/dataautomated/dashboard.png"}
-              width={"1915"}
-              height={"1101"}
-              alt={"DataAutomated application dashboard"}
-              loading={"lazy"}
-            />
-            <span>
-              {"02 / INSIDE THE PLATFORM "}
-              <b>{"↗"}</b>
-            </span>
-          </a>
-          <a
-            href={"/assets/dataautomated/landing-intelligence.png"}
-            data-photo-preview={"2"}
-            onClick={(event) => {
-              event.preventDefault();
-              openPhoto("data", 2);
-            }}
-          >
-            <img
-              src={"/assets/dataautomated/landing-intelligence.png"}
-              width={"1920"}
-              height={"1080"}
-              alt={
-                "DataAutomated customer intelligence landing-page presentation"
-              }
-              loading={"lazy"}
-            />
-            <span>
-              {"03 / CONNECTING THE SIGNALS "}
-              <b>{"↗"}</b>
-            </span>
-          </a>
+        <div className="featured-duo">
+          <FeaturedMediaCard
+            index={4}
+            src="/assets/dataautomated/dashboard.png"
+            alt="DataAutomated application dashboard"
+            eyebrow="02 / INSIDE THE PLATFORM"
+            title="The application interface"
+            onOpen={(photoIndex) => openPhoto("data", photoIndex)}
+          />
+          <FeaturedMediaCard
+            index={2}
+            src="/assets/dataautomated/landing-intelligence.png"
+            alt="DataAutomated customer intelligence landing-page presentation"
+            eyebrow="03 / CONNECTING THE SIGNALS"
+            title="The customer intelligence layer"
+            onOpen={(photoIndex) => openPhoto("data", photoIndex)}
+          />
         </div>
         <div className={"project-media-links"}>
           <button

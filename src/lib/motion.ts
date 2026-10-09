@@ -1,10 +1,12 @@
-/** Controlled 3D preview layout: the selected card stays fully readable.
- * Side cards are scaled previews that never cover the centered card.
- * Orbit speed and shortest-path selection stay independent of layout geometry. */
+/** NYX circular project orbit — original continuous 32s rotation and 3D Y turns.
+ * Viewport-aware card scaling/visibility prevents adjacent cards from covering
+ * the selected card without flattening the motion into a side-by-side slider. */
 export const ORBIT_PERIOD_MS = 32000;
+
 export function wrapIndex(index: number, count: number) {
   return ((index % count) + count) % count;
 }
+
 export function orbitPosition(
   angle: number,
   index: number,
@@ -14,20 +16,22 @@ export function orbitPosition(
   const a = angle + (index * Math.PI * 2) / count;
   const sine = Math.sin(a);
   const depth = Math.cos(a);
-  const scale = 0.56 + 0.44 * Math.max(0, depth);
-  const x = sine * width * 0.445;
-  const y = (1 - depth) * 6;
+  // True circular orbit (sin/cos), with smaller windows moving around the back.
+  const x = sine * width * 0.46;
+  const y = (1 - depth) * 10;
+  const scale = 0.72 + 0.28 * Math.max(0, depth);
+  const opacity = depth < -0.1 ? 0 : Math.min(1, (depth + 0.1) / 0.17);
   return {
-    transform: `translate(-50%,-50%) translate3d(${x}px,${y}px,${(depth - 1) * 95}px) rotateY(${-sine * 20}deg) scale(${scale})`,
+    transform: `translate(-50%,-50%) translate3d(${x}px,${y}px,${(depth - 1) * 115}px) rotateY(${-sine * 45}deg) scale(${scale})`,
     zIndex: String(Math.round((depth + 1) * 100)),
-    filter:
-      depth < -0.55 ? "none" : `saturate(${0.87 + 0.13 * Math.max(0, depth)})`,
-    opacity: depth < -0.55 ? "0" : String(0.75 + 0.25 * Math.max(0, depth)),
+    filter: `brightness(${0.87 + (depth + 1) * 0.065})`,
+    opacity: String(opacity),
     depth,
     scale,
     x,
   };
 }
+
 export function nearestOrbitIndex(angle: number, count: number) {
   let nearest = 0,
     depth = -Infinity;
@@ -40,6 +44,7 @@ export function nearestOrbitIndex(angle: number, count: number) {
   }
   return nearest;
 }
+
 export function targetAngle(angle: number, index: number, count: number) {
   const tau = Math.PI * 2;
   let delta = ((-wrapIndex(index, count) * tau) / count - angle) % tau;

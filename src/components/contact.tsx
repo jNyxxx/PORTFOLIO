@@ -2,6 +2,7 @@
 import { useCopyEmail } from "@/hooks/use-browser";
 import { Icon } from "./ui/icon";
 import { SocialTile } from "./ui/controls";
+import { Button } from "./ui/button";
 
 export function Contact() {
   const { copy, copied, status } = useCopyEmail();
@@ -24,7 +25,8 @@ export function Contact() {
             <br />
             Let’s figure out what it could become.
           </p>
-          <button
+          <Button
+            variant="outline"
             className="email-address ui-copy-address"
             type="button"
             onClick={copy}
@@ -45,7 +47,7 @@ export function Contact() {
             <span className="ui-copy-hint">
               {copied ? "Copied" : "Click to copy"}
             </span>
-          </button>
+          </Button>
         </div>
       </div>
       <div className="social-links" aria-label="Contact and social profiles">
