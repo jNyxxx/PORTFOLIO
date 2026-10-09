@@ -3,6 +3,7 @@ import { usePortfolio } from "./portfolio-provider";
 import { carouselEntries, roles } from "@/content/portfolio";
 import { useOrbit } from "@/hooks/use-orbit";
 import { useClock } from "@/hooks/use-browser";
+import { ActionLink, IconButton } from "./ui/controls";
 export function Hero() {
   const { openCase } = usePortfolio();
   const {
@@ -45,14 +46,20 @@ export function Hero() {
           }
         </p>
         <div className={"intro-actions"}>
-          <a href={"#featured"} className={"button-primary"}>
-            {"See my work "}
-            <span>{"↗"}</span>
-          </a>
-          <a href={"#contact"} className={"button-secondary"}>
-            {"Let’s talk "}
-            <span>{"↗"}</span>
-          </a>
+          <ActionLink
+            href="#featured"
+            variant="primary"
+            className="button-primary"
+          >
+            See my work
+          </ActionLink>
+          <ActionLink
+            href="#contact"
+            variant="secondary"
+            className="button-secondary"
+          >
+            Let’s talk
+          </ActionLink>
         </div>
         <div className={"intro-location"}>
           <span className={"location-dot"}></span>
@@ -216,22 +223,20 @@ export function Hero() {
             </span>
           </button>
         </div>
-        <button
-          className={"carousel-arrow previous"}
-          id={"carousel-prev"}
-          aria-label={"Previous project"}
+        <IconButton
+          className="carousel-arrow previous"
+          id="carousel-prev"
+          label="Previous project"
+          icon="chevron-left"
           onClick={() => select(index - 1)}
-        >
-          {"‹"}
-        </button>
-        <button
-          className={"carousel-arrow next"}
-          id={"carousel-next"}
-          aria-label={"Next project"}
+        />
+        <IconButton
+          className="carousel-arrow next"
+          id="carousel-next"
+          label="Next project"
+          icon="chevron-right"
           onClick={() => select(index + 1)}
-        >
-          {"›"}
-        </button>
+        />
         <div className={"carousel-caption"}>
           <div>
             <p id={"carousel-name"}>{carouselEntries[index].name}</p>
@@ -239,21 +244,18 @@ export function Hero() {
               {carouselEntries[index].category}
             </span>
           </div>
-          <button
-            id={"carousel-pause"}
+          <IconButton
+            id="carousel-pause"
+            label={paused ? "Resume carousel motion" : "Pause carousel motion"}
+            icon={paused ? "play" : "pause"}
             onClick={togglePause}
             aria-pressed={paused}
-            aria-label={
-              paused ? "Resume carousel motion" : "Pause carousel motion"
-            }
-          >
-            {paused ? "▷" : "Ⅱ"}
-          </button>
+          />
         </div>
         <p className={"orbit-hint"}>
           {"DRAG TO EXPLORE "}
           <span>{"·"}</span>
-          {" SELECT TO DISCOVER"}
+          {" SELECT A CARD TO EXPLORE"}
         </p>
         <div
           className={"carousel-dots"}

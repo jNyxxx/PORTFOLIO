@@ -1,6 +1,6 @@
-# NYX Portfolio — Design System 01
+# NYX Portfolio — Design System 02
 
-This portfolio uses **one custom visual language** rather than installing several competing component frameworks. The primary stylesheet is `public/styles/system.css`, loaded last by `src/app/layout.tsx`. Existing legacy style files and project media remain intact so content, interaction tests, and historical assets are preserved.
+This portfolio uses **one custom visual language** instead of combining five incompatible component frameworks. Shared, working React components now live in `src/components/ui/controls.tsx` and `src/components/ui/icon.tsx`, with their visual contracts in `public/styles/system.css`. The stylesheet loads last by `src/app/layout.tsx`. The original four stylesheets and project media remain intact.
 
 ## Direction
 
@@ -43,6 +43,21 @@ Defined in `:root` inside `public/styles/system.css`.
 | Contact/footer | Light-sage closing surface, purposeful email CTA and social grid |
 | Dialogs | Consistent modal, tabs, image previews and gallery controls |
 
+## Reusable components actually implemented
+
+| JSX component | Location | Used on screen | Pattern adapted from |
+| --- | --- | --- | --- |
+| `ActionLink` | `src/components/ui/controls.tsx` | Hero "See my work" and "Let's talk" | shadcn/ui Button variants and Untitled UI button layout |
+| `IconButton` | Same | Carousel previous/next and pause controls | shadcn/ui icon buttons and Mantine action icons |
+| `FilterOption` | Same | Six Toolbox technology filters | Mantine SegmentedControl and MUI single-select toggle group |
+| `SocialTile` | Same | Facebook, Instagram, Email, GitHub cards | Untitled UI social buttons, custom outbound/link behavior |
+| `Icon` | `src/components/ui/icon.tsx` | Brand icons, menu, selected skills, carousel and clipboard | Lightweight local SVG paths in the Lucide stroke convention |
+| `ui-copy-address` | `src/components/contact.tsx` | Click directly on the email address, see copied confirmation | shadcn/ui button feedback patterns |
+
+**Carousel geometry:** `src/lib/motion.ts` returns transform, opacity and depth; `src/hooks/use-orbit.ts` updates positions, visible state and keyboard focus. The front card stays readable without the side cards covering it. On mobile, side cards are hidden in favor of one focused preview plus accessible arrows.
+
+These are **actual reusable project components**, adapted to NYX rather than pasted default-library themes. Previously the update only changed CSS, and there were no reusable component implementations. This version addresses that limitation. No `@mui/material`, `@mantine/core`, Untitled UI package or shadcn CLI-generated package has been installed.
+
 ## Inspiration and licensing boundaries
 
 We referenced patterns, not copied whole site designs:
@@ -53,7 +68,7 @@ We referenced patterns, not copied whole site designs:
 - [Uiverse](https://uiverse.io/): restrained hover/micro-interaction details.
 - [Material UI](https://mui.com/): centralized theming discipline and consistent component states.
 
-No third-party component runtime or framework CSS was installed. If new patterns are added, recreate them within this system using the current project's Next.js/React/CSS setup. Do not paste default Mantine, MUI, shadcn or Untitled UI themes into this portfolio.
+These implementations use React native buttons/links and inline local SVG vectors. Design ideas were adapted and restyled, not copied wholesale. If new patterns are added, prefer the existing component contracts and do not paste default Mantine, MUI, shadcn or Untitled UI themes into this portfolio. Preserve reduced-motion and accessible focus states.
 
 ## Implementing new components
 

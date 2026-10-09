@@ -1,4 +1,5 @@
 "use client";
+import { Icon } from "./ui/icon";
 
 export function Skills() {
   return (
@@ -22,7 +23,7 @@ export function Skills() {
       <div className={"capability-grid"}>
         <article>
           <span className={"cap-symbol"} aria-hidden={"true"}>
-            {"⌘"}
+            <Icon name="layers" size={24} />
           </span>
           <span className={"eyebrow"}>{"01 / SOFTWARE"}</span>
           <h3>{"Full-stack engineering"}</h3>
@@ -35,7 +36,7 @@ export function Skills() {
         </article>
         <article>
           <span className={"cap-symbol"} aria-hidden={"true"}>
-            {"⌁"}
+            <Icon name="workflow" size={24} />
           </span>
           <span className={"eyebrow"}>{"02 / CONNECTIONS"}</span>
           <h3>{"AI & automation"}</h3>
@@ -48,7 +49,7 @@ export function Skills() {
         </article>
         <article>
           <span className={"cap-symbol"} aria-hidden={"true"}>
-            {"⊞"}
+            <Icon name="shield" size={24} />
           </span>
           <span className={"eyebrow"}>{"03 / FOUNDATIONS"}</span>
           <h3>{"Systems thinking"}</h3>

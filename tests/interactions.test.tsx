@@ -132,11 +132,42 @@ test("all project dialogs, gallery navigation, image previews, filters, motion c
       },
       configurable: true,
     });
-    await click(".copy-email");
+    const socialTiles = d.querySelectorAll(".social-links > *");
+    assert.equal(socialTiles.length, 4);
+    for (const tile of socialTiles) {
+      assert.equal(tile.querySelectorAll("svg").length, 2);
+    }
+    assert.equal(d.querySelectorAll(".copy-email").length, 0);
+    await click(".ui-copy-address");
     assert.equal(copied, "nyx.sdlc@gmail.com");
     assert.equal(
       d.getElementById("copy-status")?.textContent,
       "Email address copied.",
+    );
+    assert.equal(
+      d.querySelector(".ui-copy-address")?.getAttribute("data-copied"),
+      "true",
+    );
+    copied = "";
+    await click(".social-links button");
+    assert.equal(copied, "nyx.sdlc@gmail.com");
+    let fallbackWasUsed = false;
+    Object.defineProperty(w.navigator, "clipboard", {
+      value: {
+        writeText: async () => {
+          throw new Error("denied");
+        },
+      },
+      configurable: true,
+    });
+    d.execCommand = () => {
+      fallbackWasUsed = true;
+      return true;
+    };
+    await click(".ui-copy-address");
+    assert(
+      fallbackWasUsed,
+      "Legacy clipboard fallback should work when permission is denied",
     );
   } finally {
     await act(async () => root.unmount());

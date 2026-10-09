@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { media } from "@/content/portfolio";
+import { Icon } from "./ui/icon";
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
@@ -38,7 +39,7 @@ export function Header() {
         </a>
         <a href={"#contact"} onClick={() => setMenuOpen(false)}>
           {"Contact "}
-          <span>{"↗"}</span>
+          <Icon name="arrow-up-right" size={15} />
         </a>
       </nav>
       <button
@@ -48,7 +49,7 @@ export function Header() {
         aria-expanded={menuOpen}
         aria-label={menuOpen ? "Close navigation" : "Open navigation"}
       >
-        {menuOpen ? "✕" : "☰"}
+        <Icon name={menuOpen ? "close" : "menu"} size={21} />
       </button>
     </header>
   );

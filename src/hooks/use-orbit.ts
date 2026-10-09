@@ -49,15 +49,19 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
     const controller = new AbortController(),
       options = { signal: controller.signal };
     function render() {
+      const next = nearestOrbitIndex(angle, count);
       cardsRef.current.forEach((card, i) => {
         if (card) {
           const p = orbitPosition(angle, i, count, width);
           card.style.transform = p.transform;
           card.style.zIndex = p.zIndex;
           card.style.filter = p.filter;
+          card.style.opacity = p.opacity;
+          card.dataset.facing = i === next ? "true" : "false";
+          card.style.pointerEvents = p.depth < -0.55 ? "none" : "auto";
+          card.tabIndex = i === next ? 0 : -1;
         }
       });
-      const next = nearestOrbitIndex(angle, count);
       if (next !== current) {
         current = next;
         setIndex(next);

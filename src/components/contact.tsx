@@ -1,98 +1,84 @@
 "use client";
 import { useCopyEmail } from "@/hooks/use-browser";
+import { Icon } from "./ui/icon";
+import { SocialTile } from "./ui/controls";
+
 export function Contact() {
   const { copy, copied, status } = useCopyEmail();
   return (
-    <section id={"contact"} className={"contact section"}>
-      <div className={"contact-meta"}>
-        <span className={"eyebrow"}>{"WHAT’S NEXT"}</span>
-        <span>{"GOOD SYSTEMS START WITH A CONVERSATION."}</span>
+    <section id="contact" className="contact section">
+      <div className="contact-meta">
+        <span className="eyebrow">WHAT’S NEXT</span>
+        <span>GOOD SYSTEMS START WITH A CONVERSATION.</span>
       </div>
-      <a className={"contact-title"} href={"mailto:nyx.sdlc@gmail.com"}>
-        {"Let’s build something"}
+      <a className="contact-title" href="mailto:nyx.sdlc@gmail.com">
+        Let’s build something
         <br />
-        <em>{"worth using."}</em>
-        <span>{"↗"}</span>
+        <em>worth using.</em>
+        <span>↗</span>
       </a>
-      <div className={"contact-bottom"}>
+      <div className="contact-bottom">
         <div>
           <p>
-            {"Have a system in mind?"}
+            Have a system in mind?
             <br />
-            {"Let’s figure out what it could become."}
+            Let’s figure out what it could become.
           </p>
-          <a className={"email-address"} href={"mailto:nyx.sdlc@gmail.com"}>
-            {"nyx.sdlc@gmail.com "}
-            <span>{"↗"}</span>
-          </a>
+          <button
+            className="email-address ui-copy-address"
+            type="button"
+            onClick={copy}
+            aria-label={
+              copied
+                ? "Email address copied; copy again"
+                : "Copy email address to clipboard"
+            }
+            title={
+              copied
+                ? "Copied — click to copy again"
+                : "Click to copy email address"
+            }
+            data-copied={copied}
+          >
+            <span>nyx.sdlc@gmail.com</span>
+            <Icon name={copied ? "check" : "copy"} size={18} />
+            <span className="ui-copy-hint">
+              {copied ? "Copied" : "Click to copy"}
+            </span>
+          </button>
         </div>
-        <button
-          className={"copy-email"}
-          type={"button"}
-          aria-label={"Copy email address"}
+      </div>
+      <div className="social-links" aria-label="Contact and social profiles">
+        <SocialTile
+          index="01"
+          name="Facebook"
+          detail="@nexyeu"
+          icon="facebook"
+          href="https://www.facebook.com/nexyeu"
+        />
+        <SocialTile
+          index="02"
+          name="Instagram"
+          detail="@_jnyxx_"
+          icon="instagram"
+          href="https://www.instagram.com/_jnyxx_/"
+        />
+        <SocialTile
+          index="03"
+          name="Email"
+          detail={copied ? "Address copied" : "Click to copy"}
+          icon="mail"
           onClick={copy}
-        >
-          {copied ? (
-            <>
-              Copied <span>✓</span>
-            </>
-          ) : (
-            <>
-              Copy email <span>⧉</span>
-            </>
-          )}
-        </button>
+        />
+        <SocialTile
+          index="04"
+          name="GitHub"
+          detail="@jNyxxx"
+          icon="github"
+          href="https://github.com/jNyxxx"
+        />
       </div>
-      <div
-        className={"social-links"}
-        aria-label={"Contact and social profiles"}
-      >
-        <a
-          href={"https://www.facebook.com/nexyeu"}
-          target={"_blank"}
-          rel={"noopener noreferrer"}
-        >
-          <span className={"social-index"}>{"01"}</span>
-          <span>
-            {"Facebook"}
-            <small>{"@nexyeu"}</small>
-          </span>
-          <b>{"↗"}</b>
-        </a>
-        <a
-          href={"https://www.instagram.com/_jnyxx_/"}
-          target={"_blank"}
-          rel={"noopener noreferrer"}
-        >
-          <span className={"social-index"}>{"02"}</span>
-          <span>
-            {"Instagram"}
-            <small>{"@_jnyxx_"}</small>
-          </span>
-          <b>{"↗"}</b>
-        </a>
-        <a href={"mailto:nyx.sdlc@gmail.com"}>
-          <span className={"social-index"}>{"03"}</span>
-          <span>
-            {"Email"}
-            <small>{"Let’s talk"}</small>
-          </span>
-          <b>{"↗"}</b>
-        </a>
-        <a
-          href={"https://github.com/jNyxxx"}
-          target={"_blank"}
-          rel={"noopener noreferrer"}
-        >
-          <span className={"social-index"}>{"04"}</span>
-          <span>
-            {"GitHub"}
-            <small>{"@jNyxxx"}</small>
-          </span>
-          <b>{"↗"}</b>
-        </a>
-      </div>
-      <p className={"copy-status"} aria-live={"polite"} id={"copy-status"}>
+      <p className="copy-status" aria-live="polite" id="copy-status">
         {status}
       </p>
     </section>

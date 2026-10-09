@@ -25,12 +25,39 @@ export function useCopyEmail() {
   const [copied, setCopied] = useState(false),
     [status, setStatus] = useState("");
   async function copy() {
+    let success = false;
     try {
-      await navigator.clipboard.writeText(email);
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email);
+        success = true;
+      }
+    } catch {
+      // Fall back to the classic selection API if clipboard permission is blocked.
+    }
+    if (!success) {
+      const field = document.createElement("textarea");
+      field.value = email;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      try {
+        success = document.execCommand("copy");
+      } catch {
+        // Leave the address visible for manual copy on restrictive browsers.
+      } finally {
+        field.remove();
+      }
+    }
+    if (success) {
       setCopied(true);
       setStatus("Email address copied.");
-    } catch {
-      setStatus("You can select and copy the email address above.");
+    } else {
+      setCopied(false);
+      setStatus(
+        "Clipboard access is blocked. Select the email address to copy it.",
+      );
     }
   }
   return { copy, copied, status };

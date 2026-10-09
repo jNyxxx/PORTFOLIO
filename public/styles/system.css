@@ -725,3 +725,181 @@ dialog h2 { color: var(--ink); }
   .capability-grid article:hover,
   .featured-photo:hover img { transform: none; }
 }
+
+/* SYSTEM 02 / Actual shared React primitives.
+   Button variants: shadcn, social tiles: Untitled UI, single-choice filters:
+   Mantine & MUI, responsive motion: Uiverse. One NYX palette throughout. */
+.ui-action {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  gap: 20px; padding: 13px 18px; min-height: 47px;
+  border: 1px solid transparent; border-radius: var(--ui-radius-sm);
+  font: 650 12px/1.2 var(--sans); letter-spacing: -.01em;
+  transition: transform .22s var(--ui-ease), background-color .22s,
+    border-color .22s, box-shadow .22s;
+}
+.ui-action svg, .ui-icon-button svg, .ui-social-arrow { flex: 0 0 auto; }
+.ui-action:hover { transform: translateY(-2px); }
+.ui-action--primary { background: var(--ui-dark); border-color: var(--ui-dark); color: #fff; }
+.ui-action--primary:hover { background: #28694e; box-shadow: 0 12px 20px #153b2a24; }
+.ui-action--secondary { background: var(--ui-surface); border-color: #bfcfbc; color: #254e38; }
+.ui-action--secondary:hover { background: var(--ui-surface-hover); border-color: #92b79d; }
+.ui-icon-button {
+  display: inline-grid; place-items: center;
+  border: 1px solid var(--ui-border); border-radius: 11px;
+  background: #fcfdf9; color: #28523e;
+  width: 42px; height: 42px; padding: 0;
+  box-shadow: var(--ui-shadow);
+  transition: transform .22s var(--ui-ease), background .2s, border-color .2s;
+}
+.ui-icon-button:hover { background: #e4efe4; border-color: #acc8af; }
+.reference-header nav a:last-child { gap: 8px; }
+.reference-header nav a:last-child svg { transition: transform .22s; }
+.reference-header nav a:last-child:hover svg { transform: translate(2px,-2px); }
+.mobile-menu-toggle svg { display: block; }
+
+/* Carousel geometry: previews stop before the selected window; no 3-D stacking over content. */
+.hero-showcase { isolation: isolate; }
+.carousel-stage { height: 390px; perspective: 1600px; touch-action: pan-y; }
+.showcase-card {
+  width: 54%; max-width: 430px;
+  height: 315px; border-radius: 14px;
+  backface-visibility: hidden; transform-origin: center center;
+  will-change: transform, opacity;
+  transition: opacity .16s linear, box-shadow .2s, border-color .2s;
+  cursor: pointer;
+}
+.showcase-card[data-facing="true"] {
+  border-color: #acc7b4;
+  box-shadow: 0 36px 72px -30px #12392f73, 0 4px 20px #173d3024;
+}
+.showcase-card[data-facing="false"] { box-shadow: 0 15px 32px -21px #102c2762; }
+.showcase-card:hover { border-color: #90b8a2; }
+.window-title { height: 36px; }
+.showcase-screen { height: calc(100% - 36px); }
+.carousel-arrow {
+  position: absolute; top: 48%;
+  transform: translateY(-50%);
+  z-index: 6;
+}
+.carousel-arrow:hover { transform: translateY(-50%) scale(1.05); }
+.carousel-arrow.previous { left: 0; }
+.carousel-arrow.next { right: 0; }
+.carousel-caption { margin-top: 12px; z-index: 2; }
+.carousel-caption > .ui-icon-button { width: 38px; height: 38px; }
+.carousel-caption > .ui-icon-button:hover { transform: translateY(-2px); }
+.carousel-dots button { min-height: 8px; min-width: 8px; }
+.carousel-dots button[aria-pressed="true"] { width: 23px; }
+
+/* Exclusive selection buttons; one spacing/border/active pattern across six filters. */
+.stack-filters .ui-filter-option {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; width: 100%;
+}
+.ui-filter-count {
+  display: inline-grid; place-items: center;
+  flex-shrink: 0; min-width: 24px; height: 24px; padding: 0 5px;
+  border-radius: 7px; color: #52745c; background: #f0f5ed;
+  font-size: 10px; font-variant-numeric: tabular-nums;
+}
+.ui-filter-option.active .ui-filter-count { background: #cde3ce; color: #164935; }
+
+/* Copyable email is now the only copy control. */
+.contact-bottom { margin-top: 32px; }
+.contact-bottom > div { display: flex; flex-direction: column; align-items: center; }
+.email-address.ui-copy-address {
+  display: inline-flex; align-items: center; flex-wrap: wrap;
+  gap: 9px; justify-content: center;
+  margin: 11px 0 0; padding: 11px 15px;
+  border: 1px solid #a9c6b0; border-radius: 11px;
+  background: #f5f9f2; font: 650 16px/1.3 var(--sans);
+  color: #1f5039; letter-spacing: -.02em;
+  cursor: copy;
+  transition: border-color .22s, background .22s, box-shadow .22s, transform .22s var(--ui-ease);
+}
+.email-address.ui-copy-address:hover,
+.email-address.ui-copy-address:focus-visible {
+  background: #fff; border-color: #76aa88;
+  box-shadow: 0 6px 20px #21493214; transform: translateY(-2px);
+}
+.email-address.ui-copy-address > svg { color: #416e52; }
+.email-address.ui-copy-address .ui-copy-hint {
+  margin: 0 0 0 3px;
+  font: 550 10px/1 var(--sans); color: #748c79; letter-spacing: .02em;
+}
+.email-address.ui-copy-address[data-copied="true"] {
+  background: #d7ead8; border-color: #8cba94;
+}
+.copy-status:not(:empty) {
+  margin: 16px auto 0; min-height: 22px; color: #2c6748;
+  font-size: 11px; text-align: center;
+}
+.social-links { margin-top: 39px; }
+.social-links > :is(a,button) {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; min-width: 0; min-height: 91px;
+  padding: 22px 17px; background: transparent; color: #244739;
+  border: 0; border-right: 1px solid var(--ui-border);
+  text-align: left; font-size: 13px;
+  transition: background .2s, color .2s;
+}
+.social-links > :is(a,button):last-child { border-right: 0; }
+.social-links > :is(a,button):not(:first-child) { padding-left: 17px; }
+.social-links > :is(a,button):hover {
+  background: #e4efe3; color: #1a5938;
+}
+.social-links .social-index { font-size: 9px; color: #889b8e; }
+.ui-social-icon {
+  display: grid; place-items: center; width: 38px; height: 38px;
+  flex: 0 0 38px; color: #285944; background: #e8f0e6;
+  border: 1px solid #d1dfd2; border-radius: 11px;
+  transition: transform .25s var(--ui-ease), border-color .25s, background .25s;
+}
+.social-links > :is(a,button):hover .ui-social-icon {
+  transform: translateY(-2px); border-color: #adcbb2; background: #f7faf5;
+}
+.ui-social-text { display: block; min-width: 0; font-weight: 650; }
+.ui-social-text small { display: block; margin-top: 5px; font-weight: 400; }
+.ui-social-arrow { margin-left: auto; color: #558365; transition: transform .2s; }
+.social-links > :is(a,button):hover .ui-social-arrow { transform: translate(2px,-2px); }
+
+@media (max-width: 1100px) {
+  .carousel-stage { height: 365px; }
+  .showcase-card { width: 54%; height: 290px; }
+  .social-links > :is(a,button) { gap: 9px; padding-inline: 12px; }
+  .social-links > :is(a,button):not(:first-child) { padding-left: 12px; }
+  .ui-social-icon { width: 34px; height: 34px; flex-basis: 34px; }
+}
+@media (max-width: 750px) {
+  .social-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .social-links > :is(a,button) { border-bottom: 1px solid var(--ui-border); }
+  .social-links > :is(a,button):nth-child(2) { border-right: 0; }
+  .social-links > :is(a,button):nth-child(n+3) { border-bottom: 0; }
+  .stack-filters .ui-filter-option { width: auto; gap: 10px; }
+}
+@media (max-width: 600px) {
+  .carousel-stage { height: 320px; overflow: visible; }
+  .showcase-card { width: 84%; height: 270px; }
+  .showcase-card[data-facing="false"] { opacity: 0 !important; pointer-events: none !important; }
+  .carousel-arrow { top: 48%; width: 38px; height: 38px; }
+  .carousel-caption { margin-top: 3px; }
+  .ui-action { flex: 1 1 140px; }
+  .email-address.ui-copy-address { font-size: 14px; }
+  .social-links > :is(a,button) { padding-block: 18px; min-height: 85px; }
+}
+@media (max-width: 380px) {
+  .carousel-stage { height: 278px; }
+  .showcase-card { height: 237px; }
+  .window-title { height: 30px; }
+  .showcase-screen { height: calc(100% - 30px); }
+  .social-links > :is(a,button) { gap: 7px; padding-inline: 10px; }
+  .social-links > :is(a,button):not(:first-child) { padding-left: 10px; }
+  .ui-social-icon { width: 29px; height: 29px; flex-basis: 29px; }
+  .ui-social-text { font-size: 11px; }
+  .ui-social-text small { font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-action, .ui-icon-button, .ui-social-icon, .ui-social-arrow,
+  .email-address.ui-copy-address, .showcase-card {
+    transition-duration: 0.01ms !important;
+  }
+}
