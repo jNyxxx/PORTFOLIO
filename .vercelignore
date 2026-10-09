@@ -1,0 +1,8 @@
+# Deploy source, not another hosting provider's metadata or local artifacts.
+.openai/
+.github/
+out/
+tests/
+ngrok.exe
+DESIGN_SYSTEM.md
+tsconfig.tsbuildinfo

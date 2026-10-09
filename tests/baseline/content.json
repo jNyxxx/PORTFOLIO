@@ -1,0 +1,500 @@
+{
+  "media": {
+    "portrait": {
+      "src": "assets/junex-avatar.png",
+      "alt": "Illustrated avatar of Junex Glenn Baran, with dark hair and silver glasses"
+    },
+    "data": {
+      "video": null,
+      "photos": [
+        {
+          "src": "assets/dataautomated/landing-hero.png",
+          "caption": "Landing page · Signal. Beyond feedback.",
+          "alt": "DataAutomated landing page · signal. beyond feedback., captured from the original product recording at 1920 by 1080."
+        },
+        {
+          "src": "assets/dataautomated/landing-evidence.png",
+          "caption": "Landing page · Connected evidence",
+          "alt": "DataAutomated landing page · connected evidence, captured from the original product recording at 1920 by 1080."
+        },
+        {
+          "src": "assets/dataautomated/landing-intelligence.png",
+          "caption": "Landing page · Customer intelligence",
+          "alt": "DataAutomated landing page · customer intelligence, captured from the original product recording at 1920 by 1080."
+        },
+        {
+          "src": "assets/dataautomated/landing-services.png",
+          "caption": "Landing page · Intelligence services",
+          "alt": "DataAutomated landing page · intelligence services, captured from the original product recording at 1920 by 1080."
+        },
+        {
+          "src": "assets/dataautomated/dashboard.png",
+          "thumb": "assets/dataautomated/dashboard-thumb.png",
+          "caption": "Dashboard",
+          "alt": "DataAutomated dashboard with prompts to connect customer evidence, competitive monitoring, and behavioral analytics."
+        },
+        {
+          "src": "assets/dataautomated/voice-of-customer.png",
+          "thumb": "assets/dataautomated/voice-of-customer-thumb.png",
+          "caption": "Voice of Customer",
+          "alt": "Voice of Customer workspace showing the customer evidence connection screen."
+        },
+        {
+          "src": "assets/dataautomated/competitive-signals.png",
+          "thumb": "assets/dataautomated/competitive-signals-thumb.png",
+          "caption": "Competitive Signals",
+          "alt": "Competitive Signals workspace for configuring competitor sources."
+        },
+        {
+          "src": "assets/dataautomated/journey-intelligence.png",
+          "thumb": "assets/dataautomated/journey-intelligence-thumb.png",
+          "caption": "Journey Intelligence",
+          "alt": "Journey Intelligence workspace for connecting behavioral event sources."
+        },
+        {
+          "src": "assets/dataautomated/reports.png",
+          "thumb": "assets/dataautomated/reports-thumb.png",
+          "caption": "Reports",
+          "alt": "Reports workspace with delivery preferences, report history, and report templates."
+        },
+        {
+          "src": "assets/dataautomated/value-identified.png",
+          "thumb": "assets/dataautomated/value-identified-thumb.png",
+          "caption": "Value Identified",
+          "alt": "Value Identified workspace with value tracking, ledger activity, and daily snapshot panels."
+        },
+        {
+          "src": "assets/dataautomated/settings-sources.png",
+          "thumb": "assets/dataautomated/settings-sources-thumb.png",
+          "caption": "Settings & Sources",
+          "alt": "Settings and Sources screen showing source connections and configuration tabs."
+        },
+        {
+          "src": "assets/dataautomated/setup-guide.png",
+          "thumb": "assets/dataautomated/setup-guide-thumb.png",
+          "caption": "Setup Guide",
+          "alt": "DataAutomated setup guide introducing source connection, signal processing, and insight queries."
+        },
+        {
+          "src": "assets/dataautomated/sign-in.png",
+          "thumb": "assets/dataautomated/sign-in-thumb.png",
+          "caption": "Sign In",
+          "alt": "DataAutomated sign-in page with email and password fields and product messaging."
+        }
+      ]
+    },
+    "outreach": {
+      "video": null,
+      "photos": []
+    },
+    "support": {
+      "video": null,
+      "photos": [
+        {
+          "src": "assets/support/00-portfolio-cover.png",
+          "caption": "Portfolio cover",
+          "alt": "CustomerSupportAgent interface: portfolio cover"
+        },
+        {
+          "src": "assets/support/01-operations-overview.png",
+          "caption": "Operations overview",
+          "alt": "CustomerSupportAgent interface: operations overview"
+        },
+        {
+          "src": "assets/support/02-conversation-workspace.png",
+          "caption": "Conversation workspace",
+          "alt": "CustomerSupportAgent interface: conversation workspace"
+        },
+        {
+          "src": "assets/support/03-voice-knowledge.png",
+          "caption": "Voice & knowledge",
+          "alt": "CustomerSupportAgent interface: voice & knowledge"
+        },
+        {
+          "src": "assets/support/04-knowledge-base.png",
+          "caption": "Knowledge base",
+          "alt": "CustomerSupportAgent interface: knowledge base"
+        },
+        {
+          "src": "assets/support/05-quality-activity.png",
+          "caption": "Quality & activity",
+          "alt": "CustomerSupportAgent interface: quality & activity"
+        },
+        {
+          "src": "assets/support/06-channels.png",
+          "caption": "Channels",
+          "alt": "CustomerSupportAgent interface: channels"
+        },
+        {
+          "src": "assets/support/07-policies.png",
+          "caption": "Policies",
+          "alt": "CustomerSupportAgent interface: policies"
+        },
+        {
+          "src": "assets/support/08-settings.png",
+          "caption": "Settings",
+          "alt": "CustomerSupportAgent interface: settings"
+        }
+      ]
+    },
+    "sentinel": {
+      "video": null,
+      "photos": [
+        {
+          "src": "assets/sentinel/02.png",
+          "caption": "Dashboard & risk trends",
+          "alt": "SentinelAI: dashboard & risk trends"
+        },
+        {
+          "src": "assets/sentinel/07.png",
+          "caption": "Incident reports",
+          "alt": "SentinelAI: incident reports"
+        },
+        {
+          "src": "assets/sentinel/01.png",
+          "caption": "Recent detected incidents",
+          "alt": "SentinelAI: recent detected incidents"
+        },
+        {
+          "src": "assets/sentinel/03.png",
+          "caption": "Live monitor",
+          "alt": "SentinelAI: live monitor"
+        },
+        {
+          "src": "assets/sentinel/04.png",
+          "caption": "Live analysis workspace",
+          "alt": "SentinelAI: live analysis workspace"
+        },
+        {
+          "src": "assets/sentinel/05.png",
+          "caption": "Video upload & processing",
+          "alt": "SentinelAI: video upload & processing"
+        },
+        {
+          "src": "assets/sentinel/06.png",
+          "caption": "Settings",
+          "alt": "SentinelAI: settings"
+        }
+      ]
+    },
+    "insurance": {
+      "video": null,
+      "photos": []
+    },
+    "sourcing": {
+      "video": null,
+      "photos": []
+    },
+    "divorce": {
+      "video": null,
+      "photos": []
+    },
+    "aitest": {
+      "video": null,
+      "photos": []
+    }
+  },
+  "stack": [
+    {
+      "name": "Python",
+      "mark": "Py",
+      "category": "language",
+      "label": "LANGUAGE",
+      "color": "blue"
+    },
+    {
+      "name": "TypeScript",
+      "mark": "TS",
+      "category": "language",
+      "label": "LANGUAGE",
+      "color": "blue"
+    },
+    {
+      "name": "SQL",
+      "mark": "{ }",
+      "category": "language",
+      "label": "LANGUAGE",
+      "color": "sage"
+    },
+    {
+      "name": "Next.js",
+      "mark": "N↗",
+      "category": "frontend",
+      "label": "REACT FRAMEWORK"
+    },
+    {
+      "name": "React",
+      "mark": "⚛",
+      "category": "frontend",
+      "label": "INTERFACES",
+      "color": "blue"
+    },
+    {
+      "name": "Tailwind CSS",
+      "mark": "≈",
+      "category": "frontend",
+      "label": "STYLING",
+      "color": "blue"
+    },
+    {
+      "name": "FastAPI",
+      "mark": "ϟ",
+      "category": "backend",
+      "label": "API DEVELOPMENT",
+      "color": "sage"
+    },
+    {
+      "name": "PostgreSQL",
+      "mark": "Pg",
+      "category": "backend",
+      "label": "DATABASE",
+      "color": "blue"
+    },
+    {
+      "name": "pgvector",
+      "mark": "[v]",
+      "category": "backend",
+      "label": "VECTOR SEARCH",
+      "color": "sage"
+    },
+    {
+      "name": "SQLAlchemy",
+      "mark": "sa",
+      "category": "backend",
+      "label": "DATA ACCESS",
+      "color": "rust"
+    },
+    {
+      "name": "LangGraph",
+      "mark": "⋈",
+      "category": "ai",
+      "label": "AI WORKFLOWS",
+      "color": "sage"
+    },
+    {
+      "name": "LLM APIs",
+      "mark": "✳",
+      "category": "ai",
+      "label": "AI INTEGRATION",
+      "color": "rust"
+    },
+    {
+      "name": "n8n",
+      "mark": "n8n",
+      "category": "ai",
+      "label": "AUTOMATION",
+      "color": "rust"
+    },
+    {
+      "name": "Docker",
+      "mark": "▦",
+      "category": "delivery",
+      "label": "CONTAINERS",
+      "color": "blue"
+    },
+    {
+      "name": "Git",
+      "mark": "⑂",
+      "category": "delivery",
+      "label": "VERSION CONTROL",
+      "color": "rust"
+    },
+    {
+      "name": "GitHub Actions",
+      "mark": "↗",
+      "category": "delivery",
+      "label": "CI / CD"
+    },
+    {
+      "name": "Java",
+      "mark": "Jv",
+      "category": "language",
+      "label": "LANGUAGE",
+      "color": "rust"
+    },
+    {
+      "name": "Spring Boot",
+      "mark": "S",
+      "category": "backend",
+      "label": "JAVA BACKEND",
+      "color": "sage"
+    },
+    {
+      "name": "Redis",
+      "mark": "R",
+      "category": "backend",
+      "label": "FRAME CACHING",
+      "color": "rust"
+    },
+    {
+      "name": "LM Studio",
+      "mark": "LM",
+      "category": "ai",
+      "label": "LOCAL INFERENCE",
+      "color": "sage"
+    },
+    {
+      "name": "FFmpeg",
+      "mark": "Ff",
+      "category": "delivery",
+      "label": "VIDEO PROCESSING",
+      "color": "blue"
+    }
+  ],
+  "projects": {
+    "data": {
+      "category": "01 / INTELLIGENCE PLATFORM",
+      "title": "DataAutomated",
+      "intro": "Making customer signals easier to understand—and act on.",
+      "sections": [
+        [
+          "The idea",
+          "Bring customer feedback into a connected, multi-tenant platform, with retrieval-assisted analysis and real-time insight delivery."
+        ],
+        [
+          "Engineering focus",
+          "Python and FastAPI, PostgreSQL with tenant isolation, Next.js, and event-driven updates. The architecture connects ingestion, grounded AI workflows, and the interface teams use to explore results."
+        ],
+        [
+          "Project context",
+          "Launch remains in planning. Explore nine original application screenshots and four Full HD frames from the product website recording. The screens document the interface and its setup states; they do not represent production adoption or customer results."
+        ]
+      ]
+    },
+    "outreach": {
+      "category": "04 / ORCHESTRATED OUTREACH",
+      "title": "Automated Structure",
+      "intro": "An outreach workflow with structure, grounding, and human judgment.",
+      "sections": [
+        [
+          "The idea",
+          "Connect research, enrichment, drafting, and review into a deliberate pipeline for commercial real estate outreach."
+        ],
+        [
+          "Engineering focus",
+          "A multi-tenant foundation and a LangGraph workflow, with groundedness checks and human review before sending. The work emphasizes clear workflow boundaries and reliable integrations."
+        ],
+        [
+          "Project context",
+          "An MVP project. The portfolio illustration presents the workflow concept; it does not represent live sending activity or customer results."
+        ]
+      ]
+    },
+    "support": {
+      "category": "02 / CONNECTED SUPPORT",
+      "title": "Customer Support Agent",
+      "intro": "Connected services, built on a deliberate foundation.",
+      "sections": [
+        [
+          "The idea",
+          "Create a shared foundation for support services, with clear boundaries between the API, worker, scheduler, and voice gateway."
+        ],
+        [
+          "Engineering focus",
+          "A Python modular monolith, a separate Next.js frontend, PostgreSQL with tenant isolation, and shared service packaging. Architecture and verification are central to the work."
+        ],
+        [
+          "Interface showcase",
+          "Nine supplied portfolio visuals explore operations, conversations, voice, knowledge, quality, channels, policies, and settings. They illustrate the interface direction; the project description covers the underlying architecture and foundation work."
+        ]
+      ],
+      "repository": "https://github.com/jNyxxx/CustomerSupportAgent"
+    },
+    "sentinel": {
+      "category": "03 / LOCAL VISION AI",
+      "title": "SentinelAI",
+      "intro": "Turning visual signals into incidents that can be reviewed and understood.",
+      "repository": "https://github.com/jNyxxx/SentinelAI",
+      "sections": [
+        [
+          "The idea",
+          "A full-stack security monitoring project that analyzes uploaded images, video frames, and webcam snapshots with a local vision model. The interface brings risk trends, incident reports, and supporting evidence into one workspace."
+        ],
+        [
+          "Engineering focus",
+          "A React and Vite frontend connects to a Java 21 and Spring Boot backend. PostgreSQL stores incident data, Redis supports temporary frame caching, and FFmpeg extracts video frames. LM Studio provides local vision inference using Qwen3-VL."
+        ],
+        [
+          "Project context",
+          "The repository documents the analysis pipeline and monitoring features. Seven supplied screenshots show the dashboard, incident reports, live monitor, uploads, and settings. The displayed incidents are project examples; no detection accuracy or production deployment claim is made."
+        ]
+      ]
+    },
+    "insurance": {
+      "category": "05 / EVIDENCE & POLICY SYSTEMS",
+      "title": "InsuranceLeadBot",
+      "intro": "An evidence and policy foundation for insurance workflows, with verifiable records and controlled configuration.",
+      "repository": "https://github.com/JGB-Code/InsuranceLeadBot",
+      "sections": [
+        [
+          "The idea",
+          "Build an insurance platform on an evidence-first foundation, with explicit policy and jurisdiction configuration."
+        ],
+        [
+          "Engineering focus",
+          "A Python and FastAPI modular monolith with PostgreSQL, SQLAlchemy, Alembic, cryptographic verification, and a minimal Next.js frontend. The repository includes an evidence ledger, a standalone offline verifier, and fixture-based policy-publication checks."
+        ],
+        [
+          "Project stage",
+          "The repository records completion of Phase 0C / Slice 2: the evidence foundation and additive product, policy, and jurisdiction configuration. Insurance product workflows, live contact behavior, and production deployment are not implemented in this baseline."
+        ]
+      ]
+    },
+    "sourcing": {
+      "category": "06 / SUPPLY ASSURANCE",
+      "title": "FocusedSourcing",
+      "intro": "A traceable evidence foundation for supply assurance, designed around tenant isolation and independently verifiable records.",
+      "repository": "https://github.com/JGB-Code/FocusedSourcing",
+      "sections": [
+        [
+          "The idea",
+          "Support physical-goods importers with written quality standards, counterparty evidence, independent inspection records, and explicit buyer authorization."
+        ],
+        [
+          "Engineering focus",
+          "A Python and FastAPI modular monolith with Next.js, PostgreSQL, row-level tenant isolation, an append-only evidence ledger, durable jobs and an outbox. Signed checkpoints and a standalone offline verifier support independent evidence verification."
+        ],
+        [
+          "Project stage",
+          "The current default-branch documentation describes the Phase 0B tenancy and evidence foundation. Product workflows and production adapters remain future work; local fixtures are used to verify the foundation."
+        ]
+      ]
+    },
+    "divorce": {
+      "category": "07 / PRIVACY & GUIDED PREPARATION",
+      "title": "DivorceSecretary",
+      "intro": "Calm, privacy-focused preparation tools, with clear boundaries between educational guidance and legal advice.",
+      "repository": "https://github.com/JGB-Code/DivorceSecretary",
+      "sections": [
+        [
+          "The idea",
+          "An organizational and educational preparation platform for people considering divorce, before hiring an attorney or filing. The product direction connects guided roadmaps, document checklists, financial tools, and attorney preparation."
+        ],
+        [
+          "Engineering focus",
+          "A Next.js and React frontend with a Python backend and PostgreSQL. Engineering work emphasizes data minimization, grounded guidance, explicit boundaries around legal advice, and automated browser-engine verification."
+        ],
+        [
+          "Project stage",
+          "The repository documents an accepted browser-engine testing foundation while broader Phase 2B work continues. The optional zero-knowledge vault is a design contract for later work: uploads remain disabled and no vault route is implemented. Production activation is not claimed."
+        ]
+      ]
+    },
+    "aitest": {
+      "category": "08 / PROJECT WORKSPACE",
+      "title": "AITestRun",
+      "intro": "An initialized project workspace. Application scope and implementation are still to come.",
+      "repository": "https://github.com/JGB-Code/AITestRun",
+      "sections": [
+        [
+          "Project stage",
+          "The accessible default branch currently contains a project README and repository ownership configuration. Application code, a technical stack, and product capabilities are not yet documented."
+        ],
+        [
+          "What is featured",
+          "This entry marks the project workspace and links directly to its repository. It will grow into a fuller case study when implementation details are available."
+        ]
+      ]
+    }
+  }
+}

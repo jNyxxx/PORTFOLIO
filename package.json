@@ -1,0 +1,36 @@
+{
+  "name": "nyx-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "node scripts/serve.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts tests/*.test.tsx",
+    "verify:parity": "node --import tsx scripts/verify-parity.ts",
+    "lint": "eslint .",
+    "format": "prettier --write src scripts tests/*.ts tests/*.tsx *.json *.ts *.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "4.3.3",
+    "@tailwindcss/postcss": "4.3.3",
+    "postcss": "^8.5.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.4.0",
+    "tsx": "^4.20.0",
+    "jsdom": "^27.0.0",
+    "@types/jsdom": "^27.0.0",
+    "prettier": "3.6.2"
+  }
+}

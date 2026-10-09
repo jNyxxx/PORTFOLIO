@@ -1,0 +1,5 @@
+/* Deliberately omit Preflight: the existing visual system owns its reset.
+   Prefix utilities so they cannot collide with the original semantic classes. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(tw);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(tw);
