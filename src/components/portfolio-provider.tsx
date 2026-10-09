@@ -1,7 +1,9 @@
 "use client";
+
 import {
   createContext,
   useContext,
+  useMemo,
   useState,
   useCallback,
   type ReactNode,
@@ -12,17 +14,26 @@ import type {
   CaseSelection,
   PhotoSelection,
 } from "@/lib/types";
+
+/**
+ * Split state by responsibility. Photo navigation must not invalidate Hero,
+ * Featured and Work: those consumers only need stable open actions.
+ */
 interface PortfolioContextValue {
   caseSelection: CaseSelection | null;
-  photoSelection: PhotoSelection | null;
   openCase: (project: ProjectId, tab?: ProjectTab) => void;
   closeCase: () => void;
   setCaseTab: (tab: ProjectTab) => void;
   openPhoto: (project: ProjectId, index: number) => void;
+}
+interface PhotoContextValue {
+  photoSelection: PhotoSelection | null;
   closePhoto: () => void;
   setPhotoIndex: (index: number) => void;
 }
 const PortfolioContext = createContext<PortfolioContextValue | null>(null);
+const PhotoContext = createContext<PhotoContextValue | null>(null);
+
 export function PortfolioProvider({ children }: { children: ReactNode }) {
   const [caseSelection, setCaseSelection] = useState<CaseSelection | null>(
     null,
@@ -30,6 +41,7 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
   const [photoSelection, setPhotoSelection] = useState<PhotoSelection | null>(
     null,
   );
+
   const openCase = useCallback(
     (project: ProjectId, tab: ProjectTab = "overview") =>
       setCaseSelection({ project, tab }),
@@ -52,25 +64,31 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
       setPhotoSelection((current) => (current ? { ...current, index } : null)),
     [],
   );
+
+  const portfolio = useMemo(
+    () => ({ caseSelection, openCase, closeCase, setCaseTab, openPhoto }),
+    [caseSelection, openCase, closeCase, setCaseTab, openPhoto],
+  );
+  const photo = useMemo(
+    () => ({ photoSelection, closePhoto, setPhotoIndex }),
+    [photoSelection, closePhoto, setPhotoIndex],
+  );
+
   return (
-    <PortfolioContext
-      value={{
-        caseSelection,
-        photoSelection,
-        openCase,
-        closeCase,
-        setCaseTab,
-        openPhoto,
-        closePhoto,
-        setPhotoIndex,
-      }}
-    >
-      {children}
+    <PortfolioContext value={portfolio}>
+      <PhotoContext value={photo}>{children}</PhotoContext>
     </PortfolioContext>
   );
 }
+
 export function usePortfolio() {
   const context = useContext(PortfolioContext);
+  if (!context) throw new Error("PortfolioProvider is required");
+  return context;
+}
+
+export function usePhotoViewer() {
+  const context = useContext(PhotoContext);
   if (!context) throw new Error("PortfolioProvider is required");
   return context;
 }

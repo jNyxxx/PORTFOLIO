@@ -10,6 +10,11 @@ $paths = @(
   "pnpm-workspace.yaml",
   "public/styles/system.css",
   "src/components/contact.tsx",
+  "src/components/dialogs.tsx",
+  "src/components/portfolio-provider.tsx",
+  "src/components/project-engineering-details.tsx",
+  "src/content/project-engineering.ts",
+  "src/lib/photos.ts",
   "src/components/featured.tsx",
   "src/components/featured-media-card.tsx",
   "src/components/header.tsx",
@@ -23,6 +28,8 @@ $paths = @(
   "src/hooks/use-orbit.ts",
   "src/components/ui/icon.tsx",
   "src/lib/motion.ts",
+  "tests/engineering.test.ts",
+  "tests/gallery-isolation.test.tsx",
   "tests/interactions.test.tsx",
   "tests/motion.test.ts",
   "tests/parity.test.tsx",
@@ -77,7 +84,7 @@ try {
   if ($LASTEXITCODE -eq 1) {
     git --no-pager diff --cached --shortstat
     Assert-Exit "Summarize changes"
-    git commit -m "Use shadcn Base UI components, restore orbit and refine showcase gallery"
+    git commit -m "Improve portfolio layout and image navigation, expand technical case studies"
     Assert-Exit "Commit NYX UI revision"
   } elseif ($LASTEXITCODE -ne 0) {
     throw "Cannot inspect staged revision."

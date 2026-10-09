@@ -7,7 +7,6 @@ import {
   stackStatus,
 } from "./technology";
 import { FilterOption } from "./ui/controls";
-import { Icon } from "./ui/icon";
 import type { TechnologyFilter } from "@/lib/types";
 
 const filters: { id: TechnologyFilter; label: string }[] = [
@@ -21,12 +20,8 @@ const filters: { id: TechnologyFilter; label: string }[] = [
 
 export function Toolbox() {
   const [filter, setFilter] = useState<TechnologyFilter>("all");
-  const [paused, setPaused] = useState(false);
   return (
-    <section
-      id="stack"
-      className={paused ? "section toolkit stack-paused" : "section toolkit"}
-    >
+    <section id="stack" className="section toolkit">
       <div className="section-heading">
         <div>
           <span className="eyebrow">TOOLS I REACH FOR</span>
@@ -42,14 +37,6 @@ export function Toolbox() {
       </div>
       <div className="stack-motion-header">
         <span className="eyebrow">A CONNECTED TOOLKIT, IN MOTION</span>
-        <button
-          id="stack-motion-toggle"
-          onClick={() => setPaused(!paused)}
-          aria-pressed={paused}
-        >
-          <Icon name={paused ? "play" : "pause"} size={15} />
-          {paused ? "Resume motion" : "Pause motion"}
-        </button>
       </div>
       <div className="stack-motion-window" aria-hidden="true">
         <div className="stack-rail" id="stack-rail-one">

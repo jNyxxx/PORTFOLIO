@@ -1,4 +1,4 @@
-# NYX Portfolio — Design System 03
+# NYX Portfolio — Design System 04
 
 This portfolio uses **one custom visual language** instead of combining five incompatible component frameworks. Actual MIT-licensed shadcn component implementations now live in `src/components/ui/button.tsx` and `src/components/ui/card.tsx`, alongside our compositions in `src/components/ui/controls.tsx` and sourced icon components in `src/components/ui/icon.tsx`. All share the NYX theme in `public/styles/system.css`. The stylesheet loads last by `src/app/layout.tsx`. The original four stylesheets and project media remain intact.
 
@@ -36,12 +36,12 @@ Defined in `:root` inside `public/styles/system.css`.
 | Featured | Dark case-study display, real screenshots, caption hierarchy |
 | Work | Unified project card, action rail, technology tags and preview strip |
 | Repository list | Same surface, border, badge and elevation vocabulary as project cards |
-| Toolbox | Soft segmented filters, structured technology grid, pauseable motion |
+| Toolbox | Soft segmented filters, gap-balanced technology tiles, decorative continuous motion without a pause button |
 | Skills | Feature panels with consistent icon tile, label, title and body |
 | Workflow | Accessible accordion with active surface and progress indicator |
 | About | Portrait frame, editorial bio, restrained attribute chips |
 | Contact/footer | Light-sage closing surface, purposeful email CTA and social grid |
-| Dialogs | Consistent modal, tabs, image previews and gallery controls |
+| Dialogs | Consistent modal, tabs, adjacent-image preloading, faster WebP previews, predictable arrow navigation, and detailed engineering case studies |
 
 ## Reusable components actually implemented
 
@@ -60,6 +60,21 @@ Defined in `:root` inside `public/styles/system.css`.
 **Carousel geometry:** The original 32-second, continuous 360° sin/cos/rotateY orbit is preserved in `src/lib/motion.ts`. The same hook updates transforms, opacity, and focus in `src/hooks/use-orbit.ts`. A full-circle geometric collision regression test checks all 360 degrees at four widths. The front card stays readable without the side cards covering it. On mobile, side cards are hidden in favor of one focused preview plus accessible arrows.
 
 These are **actual shadcn Base UI Button / Card source implementations and imported open-source primitives**, not merely inspired CSS. The shadcn components are owned by this repository, as intended by the shadcn model, with an original NYX visual theme. Installed dependencies: `@base-ui/react`, `class-variance-authority`, `lucide-react`, and `simple-icons`. We did not install five competing framework themes. Mantine, MUI, Uiverse and Untitled UI remain pattern references only.
+
+## Gallery and engineering-case-study upgrades
+
+The PhotoDialog and project screenshot view in `src/components/dialogs.tsx` reuse the lightweight preview-source mapper and immediate-neighbor preloader in `src/lib/photos.ts`. Nine existing DataAutomated WebP screenshots replace larger PNG downloads **inside the viewer only**; the original images still open through dedicated full-resolution links. The `PortfolioProvider` uses separate case-study and photo-selection contexts so moving to the next image does not re-render the hero, featured projects or work cards.
+
+The deep technical architecture content is in `src/content/project-engineering.ts`, rendered as reusable panels through `src/components/project-engineering-details.tsx`. Every one of the eight systems receives:
+- Status and a bounded product goal
+- Layer-by-layer technology and each layer's responsibility
+- An ordered data/execution pipeline
+- Architecture decisions and why those boundaries matter
+- An explicit explanation of verified features versus planned work
+
+This additional content does not change the original canonical project summary data or imply a live deployment for unlaunched projects. Technical descriptions were grounded in the accessible GitHub READMEs for AutomatedStructure, CustomerSupportAgent (JGB-Code), SentinelAI, InsuranceLeadBot, FocusedSourcing, DivorceSecretary and AITestRun, plus existing verified portfolio material for DataAutomated.
+
+Visual QA revisions: the first skills card now matches the other two cards' padding, the technology grid uses three equal-width columns and discrete tiles rather than a large empty tinted grid surface, and the Toolbox "Pause motion" control is removed. Responsive layouts and reduced-motion behavior remain in the shared design layer.
 
 ## Inspiration and licensing boundaries
 

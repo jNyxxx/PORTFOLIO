@@ -6,9 +6,12 @@ import {
   type MouseEvent,
   type KeyboardEvent,
 } from "react";
-import { usePortfolio } from "./portfolio-provider";
+import { usePortfolio, usePhotoViewer } from "./portfolio-provider";
 import { media, projects } from "@/content/portfolio";
 import { wrapIndex } from "@/lib/motion";
+import { previewSource, useAdjacentPhotoPreload } from "@/lib/photos";
+import { ProjectEngineeringDetails } from "./project-engineering-details";
+import { IconButton } from "./ui/controls";
 import type { ProjectTab } from "@/lib/types";
 function useNativeDialog(
   open: boolean,
@@ -59,6 +62,7 @@ export function ProjectDialog() {
     tab = caseSelection?.tab ?? "overview";
   const index = photos.length ? wrapIndex(photoIndex, photos.length) : 0,
     photo = photos[index];
+  useAdjacentPhotoPreload(photos, index, !!caseSelection && tab === "photos");
   function tabKeys(e: KeyboardEvent<HTMLButtonElement>) {
     const tabs: ProjectTab[] = photos.length
       ? ["overview", "photos"]
@@ -145,32 +149,38 @@ export function ProjectDialog() {
                   rel="noopener noreferrer"
                   aria-label={"Open " + photo.caption + " at full resolution"}
                 >
-                  <img className="real-media" src={photo.src} alt={photo.alt} />
+                  <img
+                    className="real-media"
+                    src={previewSource(photo.src)}
+                    alt={photo.alt}
+                    decoding="async"
+                    loading="eager"
+                  />
                 </a>
                 <div className="gallery-nav">
-                  <button
+                  <IconButton
                     className="gallery-prev"
-                    aria-label="Previous screenshot"
+                    label="Previous screenshot"
+                    icon="chevron-left"
+                    aria-keyshortcuts="ArrowLeft"
                     disabled={photos.length < 2}
                     onClick={() =>
                       setPhotoIndex(wrapIndex(index - 1, photos.length))
                     }
-                  >
-                    ←
-                  </button>
+                  />
                   <p aria-live="polite">
                     {index + 1} / {photos.length} — {photo.caption}
                   </p>
-                  <button
+                  <IconButton
                     className="gallery-next"
-                    aria-label="Next screenshot"
+                    label="Next screenshot"
+                    icon="chevron-right"
+                    aria-keyshortcuts="ArrowRight"
                     disabled={photos.length < 2}
                     onClick={() =>
                       setPhotoIndex(wrapIndex(index + 1, photos.length))
                     }
-                  >
-                    →
-                  </button>
+                  />
                 </div>
                 <div
                   className="gallery-thumbnails"
@@ -219,6 +229,9 @@ export function ProjectDialog() {
           {project?.sections.map(([title, copy]) => (
             <Section key={title} title={title} copy={copy} />
           ))}
+          {caseSelection && (
+            <ProjectEngineeringDetails project={caseSelection.project} />
+          )}
         </div>
       </div>
       <button className="dialog-done" onClick={closeCase}>
@@ -236,7 +249,7 @@ function Section({ title, copy }: { title: string; copy: string }) {
   );
 }
 export function PhotoDialog() {
-  const { photoSelection, closePhoto, setPhotoIndex } = usePortfolio();
+  const { photoSelection, closePhoto, setPhotoIndex } = usePhotoViewer();
   const modal = useNativeDialog(!!photoSelection, closePhoto);
   const [error, setError] = useState<{ src: string; message: string } | null>(
     null,
@@ -246,6 +259,7 @@ export function PhotoDialog() {
       ? wrapIndex(photoSelection?.index ?? 0, photos.length)
       : 0,
     photo = photos[index];
+  useAdjacentPhotoPreload(photos, index, !!photoSelection);
   function move(delta: number) {
     if (photos.length) setPhotoIndex(wrapIndex(index + delta, photos.length));
   }
@@ -274,8 +288,10 @@ export function PhotoDialog() {
       </button>
       <img
         id="preview-image"
-        src={photo?.src}
+        src={photo ? previewSource(photo.src) : undefined}
         alt={photo?.alt ?? ""}
+        decoding="async"
+        fetchPriority="high"
         onError={() =>
           setError({
             src: photo?.src ?? "",
@@ -285,23 +301,25 @@ export function PhotoDialog() {
         }
       />
       <div className="preview-navigation">
-        <button
+        <IconButton
           id="preview-prev"
-          aria-label="Previous image"
+          label="Previous image"
+          icon="chevron-left"
+          aria-keyshortcuts="ArrowLeft"
+          disabled={photos.length < 2}
           onClick={() => move(-1)}
-        >
-          ←
-        </button>
+        />
         <p id="preview-caption" aria-live="polite">
           {photo ? `${index + 1} / ${photos.length} — ${photo.caption}` : ""}
         </p>
-        <button
+        <IconButton
           id="preview-next"
-          aria-label="Next image"
+          label="Next image"
+          icon="chevron-right"
+          aria-keyshortcuts="ArrowRight"
+          disabled={photos.length < 2}
           onClick={() => move(1)}
-        >
-          →
-        </button>
+        />
       </div>
       <a
         id="preview-original"

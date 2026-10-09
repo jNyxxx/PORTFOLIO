@@ -6,7 +6,7 @@ import { Portfolio } from "../src/components/portfolio";
 import { media, projects } from "../src/content/portfolio";
 import { makeDOM, installDOM } from "./dom-fixture";
 import type { ProjectId } from "../src/lib/types";
-test("all project dialogs, gallery navigation, image previews, filters, motion controls, and menu work", async () => {
+test("project engineering, gallery navigation, optimized previews, filters, and menu work", async () => {
   const dom = makeDOM();
   installDOM(dom);
   const w = dom.window,
@@ -80,6 +80,13 @@ test("all project dialogs, gallery navigation, image previews, filters, motion c
         d.getElementById("case-title")?.textContent,
         projects[key].title,
       );
+      assert.equal(d.querySelectorAll(".case-stack-layer").length > 0, true);
+      assert.equal(d.querySelectorAll(".case-flow li").length > 0, true);
+      assert.equal(
+        d.querySelectorAll(".case-decisions article").length > 0,
+        true,
+      );
+      assert(d.querySelector(".case-evidence-note")?.textContent?.trim());
       assert.equal(d.body.style.overflow, "hidden");
       assert.equal(
         (d.getElementById("tab-photos") as HTMLButtonElement).hidden,
@@ -103,6 +110,13 @@ test("all project dialogs, gallery navigation, image previews, filters, motion c
         ?.endsWith("08-settings.png"),
     );
     await click(".gallery-next");
+    assert(
+      d
+        .querySelector(".gallery-full-image img")
+        ?.getAttribute("src")
+        ?.endsWith("00-portfolio-cover.png"),
+      "Next moves one image forward and wraps to first",
+    );
     await click('[data-photo="3"]');
     assert(
       d
@@ -125,6 +139,18 @@ test("all project dialogs, gallery navigation, image previews, filters, motion c
         d.getElementById("preview-image")?.getAttribute("src"),
         media[key as ProjectId].photos.at(-1)?.src,
       );
+      await click("#preview-next");
+      assert.equal(
+        d.getElementById("preview-image")?.getAttribute("src"),
+        media[key as ProjectId].photos[0]?.src,
+        "Next advances and wraps to the first image",
+      );
+      await click("#preview-prev");
+      assert.equal(
+        d.getElementById("preview-image")?.getAttribute("src"),
+        media[key as ProjectId].photos.at(-1)?.src,
+        "Previous goes back and wraps to the last image",
+      );
       await click("#preview-close");
     }
     await click('[data-filter="language"]');
@@ -134,10 +160,11 @@ test("all project dialogs, gallery navigation, image previews, filters, motion c
     );
     await click('[data-filter="all"]');
     assert.equal(d.querySelectorAll("#stack-grid .tech-cell").length, 21);
-    await click("#stack-motion-toggle");
-    assert(d.getElementById("stack")?.classList.contains("stack-paused"));
-    await click("#stack-motion-toggle");
-    assert(!d.getElementById("stack")?.classList.contains("stack-paused"));
+    assert.equal(d.getElementById("stack-motion-toggle"), null);
+    assert.equal(
+      d.querySelector(".stack-motion-window")?.getAttribute("aria-hidden"),
+      "true",
+    );
     await click("#menu-toggle");
     assert.equal(
       d.getElementById("menu-toggle")?.getAttribute("aria-expanded"),
