@@ -6,6 +6,7 @@ import {
   ChevronRight,
   Copy,
   Layers3,
+  Linkedin,
   Mail,
   Menu,
   Pause,
@@ -16,7 +17,7 @@ import {
 } from "lucide-react";
 import { siFacebook, siGithub, siInstagram } from "simple-icons";
 
-/** Brand marks from Simple Icons; interface glyphs from Lucide.
+/** Facebook, Instagram and GitHub from Simple Icons; LinkedIn and UI glyphs from Lucide.
  * These are real icon assets, not approximated SVG doodles.
  * Every icon is decorative; interactive parents own accessible names. */
 export type IconName =
@@ -24,6 +25,7 @@ export type IconName =
   | "instagram"
   | "mail"
   | "github"
+  | "linkedin"
   | "arrow-up-right"
   | "copy"
   | "check"
@@ -44,6 +46,7 @@ type IconProps = Omit<SVGProps<SVGSVGElement>, "children"> & {
 
 const icons = {
   mail: Mail,
+  linkedin: Linkedin,
   "arrow-up-right": ArrowUpRight,
   copy: Copy,
   check: Check,

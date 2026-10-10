@@ -94,7 +94,17 @@ export function ProjectCover({ project, onOpen, photoIndex }: CoverProps) {
           <strong className="project-cover__lead">
             {detail.lead}
             <br />
-            <em>{detail.emphasis}</em>
+            <em>
+              {project === "outreach" ? (
+                <>
+                  Reason.
+                  <br />
+                  Reach out.
+                </>
+              ) : (
+                detail.emphasis
+              )}
+            </em>
           </strong>
           <span className="project-cover__description">
             {detail.description}

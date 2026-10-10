@@ -35,18 +35,10 @@ export function Contact() {
                 ? "Email address copied; copy again"
                 : "Copy email address to clipboard"
             }
-            title={
-              copied
-                ? "Copied — click to copy again"
-                : "Click to copy email address"
-            }
             data-copied={copied}
           >
             <span>nyx.sdlc@gmail.com</span>
             <Icon name={copied ? "check" : "copy"} size={18} />
-            <span className="ui-copy-hint">
-              {copied ? "Copied" : "Click to copy"}
-            </span>
           </Button>
         </div>
       </div>
@@ -68,12 +60,19 @@ export function Contact() {
         <SocialTile
           index="03"
           name="Email"
-          detail={copied ? "Address copied" : "Click to copy"}
+          detail={copied ? "Address copied" : "nyx.sdlc@gmail.com"}
           icon="mail"
           onClick={copy}
         />
         <SocialTile
           index="04"
+          name="LinkedIn"
+          detail="Professional profile"
+          icon="linkedin"
+          href="https://www.linkedin.com/in/junex-glenn-baran-7446b4385/"
+        />
+        <SocialTile
+          index="05"
           name="GitHub"
           detail="@jNyxxx"
           icon="github"

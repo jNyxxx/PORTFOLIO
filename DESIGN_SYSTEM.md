@@ -51,11 +51,11 @@ Defined in `:root` inside `public/styles/system.css`.
 | `Card`, `CardContent`, `CardFooter` | `src/components/ui/card.tsx` | Both DataAutomated media previews | [shadcn Card](https://ui.shadcn.com/docs/components/base/card) source composition |
 | `FeaturedMediaCard` | `src/components/featured-media-card.tsx` | Featured project images with 16:9 aspect, rich captions, and fullscreen preview | Real shadcn Card plus custom editorial layout |
 | `ActionLink` | `src/components/ui/controls.tsx` | Hero "See my work" and "Let's talk" | Real shadcn `buttonVariants` on semantic anchors |
-| `IconButton` | Same | Carousel previous/next and pause controls | shadcn/ui icon buttons and Mantine action icons |
+| `IconButton` | Same | Carousel previous/next arrows and gallery controls | shadcn/ui icon buttons and Mantine action icons |
 | `FilterOption` | Same | Six Toolbox technology filters | Mantine SegmentedControl and MUI single-select toggle group |
-| `SocialTile` | Same | Facebook, Instagram, Email, GitHub cards | Untitled UI social buttons, custom outbound/link behavior |
+| `SocialTile` | Same | Facebook, Instagram, Email, LinkedIn and GitHub cards | Untitled UI social buttons, custom outbound/link behavior |
 | `Icon` | `src/components/ui/icon.tsx` | Brand icons, menu, selected skills, carousel and clipboard | Actual `lucide-react` icons and official `simple-icons` brand paths (including GitHub) |
-| `ui-copy-address` | `src/components/contact.tsx` | Click directly on the email address, see copied confirmation | shadcn/ui button feedback patterns |
+| `ui-copy-address` | `src/components/contact.tsx` | Click directly on the email address (no visible instruction), see accessible copied confirmation | shadcn/ui button feedback patterns |
 
 **Carousel geometry:** The original 32-second, continuous 360° sin/cos/rotateY orbit is preserved in `src/lib/motion.ts`. Desktop cards use a viewport-aware circular radius, projected width, 45° turning side windows and hidden rear cards to maintain non-overlap without flattening the orbit. The full-rotation test checks both clearance and containment at six stage widths. Mobile reduces to one focused card while maintaining the same circular transform underneath. The same hook updates transforms, opacity, and focus in `src/hooks/use-orbit.ts`. A full-circle geometric collision regression test checks all 360 degrees at four widths. The front card stays readable without the side cards covering it. On mobile, side cards are hidden in favor of one focused preview plus accessible arrows.
 
@@ -83,6 +83,12 @@ The deep technical architecture content is in `src/content/project-engineering.t
 This additional content does not change the original canonical project summary data or imply a live deployment for unlaunched projects. Technical descriptions were grounded in the accessible GitHub READMEs for AutomatedStructure, CustomerSupportAgent (JGB-Code), SentinelAI, InsuranceLeadBot, FocusedSourcing, DivorceSecretary and AITestRun, plus existing verified portfolio material for DataAutomated.
 
 Visual QA revisions: the first skills card now matches the other two cards' padding, the technology grid uses three equal-width columns and discrete tiles rather than a large empty tinted grid surface, and the Toolbox "Pause motion" control is removed. Responsive layouts and reduced-motion behavior remain in the shared design layer.
+
+## October 10 browser QA
+
+The contact section has five profile tiles, an email that copies without showing a redundant "Click to copy" caption, and no manual carousel pause control. Hover and keyboard focus continue to suspend the original 3D orbit; motion resumes on mouse exit. Real Chrome screenshots exposed and guided fixes for two mobile overflow issues and the featured-title contrast.
+
+The reproducible `pnpm qa:browser` walkthrough tests the built static export in Chrome at 1440×900, 768×900, 390×844 and 320×568. Findings, limitations and the **8.4/10** editorial rating are in `QA_REPORT_2026-10-10.md`.
 
 ## Inspiration and licensing boundaries
 

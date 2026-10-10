@@ -6,16 +6,8 @@ import { useClock } from "@/hooks/use-browser";
 import { ActionLink, IconButton } from "./ui/controls";
 export function Hero() {
   const { openCase } = usePortfolio();
-  const {
-    index,
-    paused,
-    regionRef,
-    stageRef,
-    setCardRef,
-    select,
-    togglePause,
-    onCardClick,
-  } = useOrbit(openCase);
+  const { index, regionRef, stageRef, setCardRef, select, onCardClick } =
+    useOrbit(openCase);
   const { clock } = useClock();
   return (
     <section
@@ -244,13 +236,6 @@ export function Hero() {
               {carouselEntries[index].category}
             </span>
           </div>
-          <IconButton
-            id="carousel-pause"
-            label={paused ? "Resume carousel motion" : "Pause carousel motion"}
-            icon={paused ? "play" : "pause"}
-            onClick={togglePause}
-            aria-pressed={paused}
-          />
         </div>
         <p className={"orbit-hint"}>
           {"DRAG TO EXPLORE "}

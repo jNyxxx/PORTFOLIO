@@ -1647,3 +1647,78 @@ dialog h2 { color: var(--ink); }
      Motion still follows the exact same 3D circle underneath. */
   .showcase-card { width: min(76%, 420px); }
 }
+
+
+/* SYSTEM 06 / Contact polish and responsive fixes verified in Chrome. */
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.social-links > :is(a, button) {
+  min-width: 0;
+  border-right: 1px solid var(--ui-border);
+  border-bottom: 0;
+  padding: 20px 12px;
+  gap: 8px;
+}
+.social-links > :is(a, button):not(:first-child) { padding-left: 12px; }
+.social-links > :is(a, button):last-child { border-right: 0; }
+.social-links .ui-social-text { min-width: 0; overflow-wrap: anywhere; }
+.email-address.ui-copy-address { gap: 11px; }
+.carousel-caption { justify-content: center; text-align: center; }
+.carousel-caption > div { width: 100%; text-align: center; }
+.featured-intro--refined h2 { color: #183e2e; }
+
+/* Fix intrinsic dashboard width and content width on small screens. */
+.project-cover__display {
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  max-width: 100%;
+}
+.project-cover__window { min-width: 0; max-width: 100%; }
+.project-cover__window img { max-width: 100%; min-width: 0; }
+.project-cover__secondary { max-width: 100%; }
+.project-cover__secondary img { max-width: 100%; min-width: 0; }
+.repository-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.repository-grid > .repository-project,
+.repository-project.detailed-repository {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.repository-card-top, .repository-identity, .repository-description,
+.project-concept, .repository-actions { min-width: 0; }
+.repository-identity :is(h3, p), .repository-description { overflow-wrap: anywhere; }
+.project-concept__lines { min-width: 0; grid-template-columns: minmax(0, 1fr); }
+.project-concept__lines > span, .project-concept__lines b { min-width: 0; max-width: 100%; }
+.project-concept__lines b { overflow-wrap: anywhere; }
+
+@media (max-width: 1000px) {
+  .social-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .social-links > :is(a, button) {
+    border-right: 1px solid var(--ui-border);
+    border-bottom: 1px solid var(--ui-border);
+  }
+  .social-links > :is(a, button):nth-child(2n) { border-right: 0; }
+  .social-links > :is(a, button):nth-child(5) {
+    grid-column: 1 / -1;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .social-links > :is(a, button):nth-child(3),
+  .social-links > :is(a, button):nth-child(4) { border-bottom: 1px solid var(--ui-border); }
+}
+@media (max-width: 800px) {
+  .repository-grid { grid-template-columns: minmax(0, 1fr); }
+  .repository-project.detailed-repository { padding: 21px 18px; }
+  .repository-card-top { flex-wrap: wrap; row-gap: 9px; }
+}
+@media (max-width: 420px) {
+  .social-links { grid-template-columns: minmax(0, 1fr); }
+  .social-links > :is(a, button),
+  .social-links > :is(a, button):nth-child(2n) {
+    border-right: 0;
+    border-bottom: 1px solid var(--ui-border);
+  }
+  .social-links > :is(a, button):last-child { border-bottom: 0; }
+}

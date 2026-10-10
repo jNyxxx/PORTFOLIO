@@ -11,7 +11,6 @@ import {
 import type { ProjectId } from "@/lib/types";
 interface OrbitActions {
   select: (index: number) => void;
-  togglePause: () => void;
   cardClick: (index: number) => void;
 }
 /** Imperative transforms avoid a React render on every animation frame.
@@ -20,11 +19,9 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
   const regionRef = useRef<HTMLDivElement>(null),
     stageRef = useRef<HTMLDivElement>(null),
     cardsRef = useRef<(HTMLButtonElement | null)[]>([]);
-  const [index, setIndex] = useState(0),
-    [paused, setPaused] = useState(false);
+  const [index, setIndex] = useState(0);
   const actions = useRef<OrbitActions>({
     select: () => {},
-    togglePause: () => {},
     cardClick: () => {},
   });
   useEffect(() => {
@@ -58,7 +55,7 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
           card.style.filter = p.filter;
           card.style.opacity = p.opacity;
           card.dataset.facing = i === next ? "true" : "false";
-          card.style.pointerEvents = p.depth < -0.10 ? "none" : "auto";
+          card.style.pointerEvents = p.depth < -0.1 ? "none" : "auto";
           card.tabIndex = i === next ? 0 : -1;
         }
       });
@@ -112,11 +109,6 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
     }
     actions.current = {
       select,
-      togglePause: () => {
-        isPaused = !isPaused;
-        setPaused(isPaused);
-        start();
-      },
       cardClick: (i) => {
         if (suppressClick) return;
         if (i === current) openCase(carouselEntries[i].key);
@@ -215,7 +207,6 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
       () => {
         isPaused = reduce.matches;
         if (isPaused) select(current);
-        setPaused(isPaused);
         start();
       },
       options,
@@ -240,7 +231,6 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
         : null;
     observer?.observe(region);
     setIndex(0);
-    setPaused(isPaused);
     render();
     start();
     return () => {
@@ -251,7 +241,6 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
       observer?.disconnect();
       actions.current = {
         select: () => {},
-        togglePause: () => {},
         cardClick: () => {},
       };
     };
@@ -267,13 +256,11 @@ export function useOrbit(openCase: (project: ProjectId) => void) {
     stageRef,
     setCardRef,
     index,
-    paused,
     select: useCallback(
       (i: number) =>
         actions.current.select(wrapIndex(i, carouselEntries.length)),
       [],
     ),
-    togglePause: useCallback(() => actions.current.togglePause(), []),
     onCardClick: useCallback((i: number) => actions.current.cardClick(i), []),
   };
 }

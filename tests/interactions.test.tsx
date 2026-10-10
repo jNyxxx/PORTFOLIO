@@ -191,10 +191,7 @@ test("project engineering, gallery navigation, optimized previews, filters, and 
       d.getElementById("menu-toggle")?.getAttribute("aria-expanded"),
       "false",
     );
-    assert.equal(
-      d.getElementById("carousel-pause")?.getAttribute("aria-pressed"),
-      "true",
-    );
+    assert.equal(d.getElementById("carousel-pause"), null);
     await click('[data-carousel-go="3"]');
     assert.equal(d.getElementById("carousel-name")?.textContent, "SentinelAI");
     assert.equal(
@@ -214,11 +211,23 @@ test("project engineering, gallery navigation, optimized previews, filters, and 
       configurable: true,
     });
     const socialTiles = d.querySelectorAll(".social-links > *");
-    assert.equal(socialTiles.length, 4);
+    assert.equal(socialTiles.length, 5);
     for (const tile of socialTiles) {
       assert.equal(tile.querySelectorAll("svg").length, 2);
     }
     assert.equal(d.querySelectorAll(".copy-email").length, 0);
+    assert.equal(d.querySelectorAll(".ui-copy-hint").length, 0);
+    assert.equal(
+      d.querySelector(".ui-copy-address")?.textContent?.trim(),
+      "nyx.sdlc@gmail.com",
+    );
+    const linkedin = d.querySelector(
+      '.social-links a[href="https://www.linkedin.com/in/junex-glenn-baran-7446b4385/"]',
+    );
+    assert(linkedin, "LinkedIn profile card must use the supplied URL");
+    assert.equal(linkedin.getAttribute("target"), "_blank");
+    assert.equal(linkedin.getAttribute("rel"), "noopener noreferrer");
+    assert(linkedin.querySelector(".ui-social-icon svg.lucide-linkedin"));
     await click(".ui-copy-address");
     assert.equal(copied, "nyx.sdlc@gmail.com");
     assert.equal(

@@ -5,6 +5,7 @@ $root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $repoUrl = "https://github.com/jNyxxx/PORTFOLIO.git"
 $paths = @(
   "DESIGN_SYSTEM.md",
+  "QA_REPORT_2026-10-10.md",
   "package.json",
   "pnpm-lock.yaml",
   "pnpm-workspace.yaml",
@@ -32,6 +33,7 @@ $paths = @(
   "src/lib/motion.ts",
   "tests/engineering.test.ts",
   "tests/gallery-isolation.test.tsx",
+  "tests/browser-qa.mjs",
   "tests/interactions.test.tsx",
   "tests/motion.test.ts",
   "tests/parity.test.tsx",
@@ -86,7 +88,7 @@ try {
   if ($LASTEXITCODE -eq 1) {
     git --no-pager diff --cached --shortstat
     Assert-Exit "Summarize changes"
-    git commit -m "Refine featured showcase and project covers, preserve clean circular carousel"
+    git commit -m "Add LinkedIn, simplify contact and carousel, complete graphical QA"
     Assert-Exit "Commit NYX UI revision"
   } elseif ($LASTEXITCODE -ne 0) {
     throw "Cannot inspect staged revision."
