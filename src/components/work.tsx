@@ -1,5 +1,6 @@
 "use client";
 import { usePortfolio } from "./portfolio-provider";
+import { ProjectCover, ProjectConceptPreview } from "./project-cover";
 export function Work() {
   const { openCase, openPhoto } = usePortfolio();
   return (
@@ -21,19 +22,7 @@ export function Work() {
       </div>
       <div className={"project-pair expanded-projects"}>
         <article className={"project image-project"} data-project={"support"}>
-          <button
-            className={"project-visual supplied-project-visual"}
-            data-cover={"support"}
-            aria-label={"Explore CustomerSupportAgent"}
-            onClick={() => openCase("support")}
-          >
-            <img
-              src={"/assets/support/00-portfolio-cover.png"}
-              alt={"CustomerSupportAgent interface overview"}
-              loading={"lazy"}
-            />
-            <span className={"round-arrow"}>{"↗"}</span>
-          </button>
+          <ProjectCover project="support" onOpen={() => openCase("support")} />
           <div className={"project-media-links"}>
             <button
               data-media={"support:overview"}
@@ -132,19 +121,10 @@ export function Work() {
           </div>
         </article>
         <article className={"project image-project"} data-project={"sentinel"}>
-          <button
-            className={"project-visual supplied-project-visual"}
-            data-cover={"sentinel"}
-            aria-label={"Explore SentinelAI"}
-            onClick={() => openCase("sentinel")}
-          >
-            <img
-              src={"/assets/sentinel/02.png"}
-              alt={"SentinelAI interface overview"}
-              loading={"lazy"}
-            />
-            <span className={"round-arrow"}>{"↗"}</span>
-          </button>
+          <ProjectCover
+            project="sentinel"
+            onOpen={() => openCase("sentinel")}
+          />
           <div className={"project-media-links"}>
             <button
               data-media={"sentinel:overview"}
@@ -244,37 +224,10 @@ export function Work() {
           </div>
         </article>
         <article className={"project"} data-project={"outreach"}>
-          <button
-            className={"project-visual outreach-visual"}
-            aria-label={"Explore Automated Structure case study"}
-            onClick={() => openCase("outreach")}
-          >
-            <div className={"visual-top"}>
-              <span>{"AUTOMATED STRUCTURE"}</span>
-              <span>{"04"}</span>
-            </div>
-            <div className={"workflow-art"}>
-              <div className={"workflow-node"}>
-                {"01 "}
-                <strong>{"Research"}</strong>
-                <span>{"↗"}</span>
-              </div>
-              <div className={"connector"}></div>
-              <div className={"workflow-node"}>
-                {"02 "}
-                <strong>{"Compose"}</strong>
-                <span>{"↗"}</span>
-              </div>
-              <div className={"connector"}></div>
-              <div className={"workflow-node orange-node"}>
-                {"03 "}
-                <strong>{"Human review"}</strong>
-                <span>{"✓"}</span>
-              </div>
-            </div>
-            <span className={"concept-label"}>{"WORKFLOW STUDY"}</span>
-            <span className={"round-arrow"}>{"↗"}</span>
-          </button>
+          <ProjectCover
+            project="outreach"
+            onOpen={() => openCase("outreach")}
+          />
           <div className={"project-media-links"}>
             <button
               data-media={"outreach:overview"}
@@ -336,6 +289,7 @@ export function Work() {
               <span className={"repository-number"}>{"05"}</span>
               <span className={"project-stage"}>{"Foundation build"}</span>
             </div>
+            <ProjectConceptPreview project="insurance" />
             <div className={"repository-identity"}>
               <small>{"EVIDENCE & POLICY SYSTEMS"}</small>
               <h3>
@@ -381,6 +335,7 @@ export function Work() {
               <span className={"repository-number"}>{"06"}</span>
               <span className={"project-stage"}>{"Foundation build"}</span>
             </div>
+            <ProjectConceptPreview project="sourcing" />
             <div className={"repository-identity"}>
               <small>{"SUPPLY ASSURANCE"}</small>
               <h3>
@@ -426,6 +381,7 @@ export function Work() {
               <span className={"repository-number"}>{"07"}</span>
               <span className={"project-stage"}>{"In development"}</span>
             </div>
+            <ProjectConceptPreview project="divorce" />
             <div className={"repository-identity"}>
               <small>{"PRIVACY & GUIDED PREPARATION"}</small>
               <h3>
@@ -468,6 +424,7 @@ export function Work() {
               <span className={"repository-number"}>{"08"}</span>
               <span className={"project-stage"}>{"Early stage"}</span>
             </div>
+            <ProjectConceptPreview project="aitest" />
             <div className={"repository-identity"}>
               <small>{"PROJECT WORKSPACE"}</small>
               <h3>

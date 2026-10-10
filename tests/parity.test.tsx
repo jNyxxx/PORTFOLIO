@@ -39,7 +39,7 @@ test("typed content is identical to the published baseline", () => {
   assert.deepEqual(projects, baseline.projects);
   assert.deepEqual(technologies, baseline.stack);
 });
-test("unchanged project, approach, about and footer content retain original DOM", async () => {
+test("unchanged approach, about and footer content retain original DOM", async () => {
   const legacy = legacyDOM(),
     dom = makeDOM();
   installDOM(dom);
@@ -47,12 +47,7 @@ test("unchanged project, approach, about and footer content retain original DOM"
   try {
     await act(async () => root.render(<Portfolio />));
     // Deliberately redesigned hero, featured cards, stack, skills and contact are tested separately.
-    for (const selector of [
-      "#work",
-      "#approach",
-      "#about",
-      "footer",
-    ]) {
+    for (const selector of ["#approach", "#about", "footer"]) {
       assert.deepEqual(
         normalizeElement(dom.window.document.querySelector(selector)!),
         normalizeElement(legacy.window.document.querySelector(selector)!),

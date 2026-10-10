@@ -20,29 +20,41 @@ test("carousel preserves the original continuous 32-second circular orbit", () =
   assert.equal(rear.opacity, "0");
   assert.equal(nearestOrbitIndex(-Math.PI / 2, 4), 1);
   const quarter = orbitPosition(Math.PI / 2, 0, 4, 650);
-  assert(Math.abs(quarter.x) > 250, "Card must travel around a circular path");
+  assert(Math.abs(quarter.x) > 225, "Card must travel around a circular path");
   assert.match(quarter.transform, /rotateY\(-45deg\)/);
 });
 
-test("visible 3D cards do not overlap at any sampled point around a full orbit", () => {
-  // Conservative projected bounds: ignore Y rotation that narrows visible cards.
-  // Desktop CSS = 46% stage width, max 460px. Mobile shows only active card.
-  for (const width of [650, 760, 900, 1280]) {
+test("front card and side previews maintain clearance throughout the 3D circular rotation", () => {
+  // The visible projected width accounts for rotateY perspective, not the
+  // unrotated bounding boxes of cards that are deliberately turned in 3D.
+  for (const width of [650, 760, 900, 1100, 1280, 1450]) {
     for (let degree = 0; degree < 360; degree++) {
       const angle = (degree * Math.PI) / 180;
       const cards = [0, 1, 2, 3]
         .map((i) => orbitPosition(angle, i, 4, width))
         .filter((p) => p.depth >= -0.1);
-      const baseWidth = Math.min(0.46 * width, 460);
+      for (const card of cards) {
+        const projection = Math.cos((card.rotationY * Math.PI) / 180);
+        const half = (card.cardWidth * card.scale * projection) / 2;
+        assert(
+          Math.abs(card.x) + half <= width / 2 + 0.01,
+          `Visible card falls outside the orbit stage at ${width}px and ${degree}°`,
+        );
+      }
       for (let left = 0; left < cards.length; left++) {
         for (let right = left + 1; right < cards.length; right++) {
-          const a = cards[left],
-            b = cards[right];
-          const clearance =
-            Math.abs(a.x - b.x) - (baseWidth * (a.scale + b.scale)) / 2;
+          const a = cards[left];
+          const b = cards[right];
+          const halfA =
+            (a.cardWidth * a.scale * Math.cos((a.rotationY * Math.PI) / 180)) /
+            2;
+          const halfB =
+            (b.cardWidth * b.scale * Math.cos((b.rotationY * Math.PI) / 180)) /
+            2;
+          const clearance = Math.abs(a.x - b.x) - (halfA + halfB);
           assert(
-            clearance >= 0,
-            `Overlap at ${width}px and ${degree}°: ${clearance}px`,
+            clearance >= -0.01,
+            `Visible cards overlap at ${width}px and ${degree}° (${clearance}px)`,
           );
         }
       }

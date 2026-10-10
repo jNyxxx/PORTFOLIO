@@ -16,6 +16,8 @@ $paths = @(
   "src/content/project-engineering.ts",
   "src/lib/photos.ts",
   "src/components/featured.tsx",
+  "src/components/project-cover.tsx",
+  "src/components/work.tsx",
   "src/components/featured-media-card.tsx",
   "src/components/header.tsx",
   "src/components/hero.tsx",
@@ -84,7 +86,7 @@ try {
   if ($LASTEXITCODE -eq 1) {
     git --no-pager diff --cached --shortstat
     Assert-Exit "Summarize changes"
-    git commit -m "Improve portfolio layout and image navigation, expand technical case studies"
+    git commit -m "Refine featured showcase and project covers, preserve clean circular carousel"
     Assert-Exit "Commit NYX UI revision"
   } elseif ($LASTEXITCODE -ne 0) {
     throw "Cannot inspect staged revision."

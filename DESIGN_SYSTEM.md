@@ -33,8 +33,8 @@ Defined in `:root` inside `public/styles/system.css`.
 | --- | --- |
 | Header | Calm sticky navigation, strong contact action, accessible mobile menu |
 | Hero | Editorial text, two action variants, one signature project orbit |
-| Featured | Dark case-study display, real screenshots, caption hierarchy |
-| Work | Unified project card, action rail, technology tags and preview strip |
+| Featured | Light editorial introduction, composed DataAutomated artwork with live screenshot layers, and quiet screenshot cards |
+| Work | Unified project cover layout, real dashboard previews + mini screenshot layers, action rail, technology tags and preview strip |
 | Repository list | Same surface, border, badge and elevation vocabulary as project cards |
 | Toolbox | Soft segmented filters, gap-balanced technology tiles, decorative continuous motion without a pause button |
 | Skills | Feature panels with consistent icon tile, label, title and body |
@@ -57,9 +57,17 @@ Defined in `:root` inside `public/styles/system.css`.
 | `Icon` | `src/components/ui/icon.tsx` | Brand icons, menu, selected skills, carousel and clipboard | Actual `lucide-react` icons and official `simple-icons` brand paths (including GitHub) |
 | `ui-copy-address` | `src/components/contact.tsx` | Click directly on the email address, see copied confirmation | shadcn/ui button feedback patterns |
 
-**Carousel geometry:** The original 32-second, continuous 360° sin/cos/rotateY orbit is preserved in `src/lib/motion.ts`. The same hook updates transforms, opacity, and focus in `src/hooks/use-orbit.ts`. A full-circle geometric collision regression test checks all 360 degrees at four widths. The front card stays readable without the side cards covering it. On mobile, side cards are hidden in favor of one focused preview plus accessible arrows.
+**Carousel geometry:** The original 32-second, continuous 360° sin/cos/rotateY orbit is preserved in `src/lib/motion.ts`. Desktop cards use a viewport-aware circular radius, projected width, 45° turning side windows and hidden rear cards to maintain non-overlap without flattening the orbit. The full-rotation test checks both clearance and containment at six stage widths. Mobile reduces to one focused card while maintaining the same circular transform underneath. The same hook updates transforms, opacity, and focus in `src/hooks/use-orbit.ts`. A full-circle geometric collision regression test checks all 360 degrees at four widths. The front card stays readable without the side cards covering it. On mobile, side cards are hidden in favor of one focused preview plus accessible arrows.
 
 These are **actual shadcn Base UI Button / Card source implementations and imported open-source primitives**, not merely inspired CSS. The shadcn components are owned by this repository, as intended by the shadcn model, with an original NYX visual theme. Installed dependencies: `@base-ui/react`, `class-variance-authority`, `lucide-react`, and `simple-icons`. We did not install five competing framework themes. Mantine, MUI, Uiverse and Untitled UI remain pattern references only.
+
+## Consistent project covers and the editorial featured section
+
+`src/components/project-cover.tsx` creates four designed covers using one React component, a consistent typographic grid, and project-specific colors. DataAutomated, CustomerSupportAgent and SentinelAI use **two actual available screenshots** placed in a main browser-like frame plus a smaller dashboard/detail overlay; AutomatedStructure uses a clearly named *conceptual workflow illustration* because no portfolio screenshots are available. Do not imply live outreach.
+
+The DataAutomated case-study frame in `src/components/featured.tsx` has a warm, light editorial introduction and a contained designed cover followed by two real screenshot cards. This replaces the previous oversized dark block and preserves the full 13-image disclosure gallery. The supporting layout still links to the detailed technical case study.
+
+The remaining four project repositories use `ProjectConceptPreview` with architecture diagrams marked as **conceptual system maps, not product screenshots**. They maintain the same deliberate layout without manufacturing nonexistent applications.
 
 ## Gallery and engineering-case-study upgrades
 

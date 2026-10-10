@@ -66,6 +66,22 @@ test("project engineering, gallery navigation, optimized previews, filters, and 
       ).length,
       2,
     );
+    // All major projects use the same composed dashboard+overlay cover.
+    assert.equal(
+      d.querySelectorAll("#featured .project-cover--data").length,
+      1,
+    );
+    assert.equal(d.querySelectorAll("#work .project-cover").length, 3);
+    for (const project of ["data", "support", "sentinel"]) {
+      const cover = d.querySelector(`.project-cover--${project}`);
+      assert(cover?.querySelector(".project-cover__window img"));
+      assert(cover?.querySelector(".project-cover__secondary img"));
+    }
+    assert.equal(d.querySelectorAll("#work .project-concept").length, 4);
+    assert.equal(d.querySelectorAll(".project-cover--outreach img").length, 0);
+    await click('[data-cover="sentinel"]');
+    assert.equal(d.getElementById("case-title")?.textContent, "SentinelAI");
+    await click(".close-dialog");
     await click('#featured .featured-media-card [data-photo-preview="4"]');
     assert((d.getElementById("photo-preview") as HTMLDialogElement).open);
     await click("#preview-close");

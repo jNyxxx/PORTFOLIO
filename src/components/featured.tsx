@@ -1,65 +1,45 @@
 "use client";
 import { usePortfolio } from "./portfolio-provider";
 import { FeaturedMediaCard } from "./featured-media-card";
+import { ProjectCover } from "./project-cover";
+import { Icon } from "./ui/icon";
 export function Featured() {
   const { openCase, openPhoto } = usePortfolio();
   return (
-    <section id={"featured"} className={"featured-section"}>
-      <div className={"featured-intro"}>
-        <span className={"section-pill"}>{"01 / FEATURED PROJECT"}</span>
-        <h2>
-          {"DataAutomated"}
-          <span>{"."}</span>
-        </h2>
-        <p>
-          {"From scattered signals to a clearer picture."}
-          <br />
-          {
-            "Customer intelligence, considered from the first screen to the system underneath."
-          }
-        </p>
-        <div className={"featured-tags"}>
-          <span>{"Next.js"}</span>
-          <span>{"FastAPI"}</span>
-          <span>{"PostgreSQL"}</span>
-          <span>{"AI workflows"}</span>
+    <section
+      id="featured"
+      className="featured-section featured-section--refined"
+    >
+      <div className="featured-intro featured-intro--refined">
+        <span className="section-pill">01 / FEATURED SYSTEM</span>
+        <div className="featured-intro__layout">
+          <h2>
+            DataAutomated.
+            <br />
+            <em>Intelligence made clearer.</em>
+          </h2>
+          <p>
+            Meet DataAutomated: an intelligence platform built to connect
+            scattered feedback, evidence and the systems behind it. Explore the
+            interface, then the architecture underneath.
+          </p>
+        </div>
+        <div className="featured-intro__meta">
+          <span>PRODUCT DESIGN / FULL-STACK ENGINEERING</span>
+          <span>
+            DATAAUTOMATED <Icon name="arrow-up-right" size={14} />
+          </span>
         </div>
       </div>
-      <article className={"project"} data-project={"data"}>
-        <div className={"photo-feature"}>
-          <div className={"photo-browser-bar"}>
-            <span>
-              <i></i>
-              <i></i>
-              <i></i>
-            </span>
-            <span>{"DataAutomated / The experience"}</span>
-            <span>{"01—13"}</span>
-          </div>
-          <a
-            className={"featured-photo"}
-            href={"/assets/dataautomated/landing-hero.png"}
-            data-photo-preview={"0"}
-            onClick={(event) => {
-              event.preventDefault();
-              openPhoto("data", 0);
-            }}
-          >
-            <img
-              src={"/assets/dataautomated/landing-hero.png"}
-              width={"1920"}
-              height={"1080"}
-              alt={"DataAutomated landing page: Signal. Beyond feedback."}
-              loading={"lazy"}
-            />
-            <span className={"photo-enlarge"}>
-              {"Explore full resolution ↗"}
-            </span>
-          </a>
-        </div>
-        <div className={"photo-feature-caption"}>
-          <span>{"THE FIRST IMPRESSION"}</span>
-          <span>{"Landing page · 1920 × 1080"}</span>
+      <article className="project featured-project" data-project="data">
+        <ProjectCover
+          project="data"
+          photoIndex={0}
+          onOpen={() => openPhoto("data", 0)}
+        />
+        <div className="featured-showcase-label">
+          <span>01 / PLATFORM EXPERIENCE</span>
+          <span>Preview the original landing page and product workspace</span>
         </div>
         <div className="featured-duo">
           <FeaturedMediaCard
